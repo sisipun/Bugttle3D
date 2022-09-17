@@ -8,9 +8,26 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Spatial",
+"class": "Level",
+"language": "GDScript",
+"path": "res://Level/Level.gd"
+}, {
+"base": "StaticBody",
+"class": "Tile",
+"language": "GDScript",
+"path": "res://Level/Tile.gd"
+} ]
+_global_script_class_icons={
+"Level": "",
+"Tile": ""
+}
+
 [application]
 
 config/name="Buggtle3D"
+run/main_scene="res://Level/Level.tscn"
 config/icon="res://icon.png"
 
 [gui]
