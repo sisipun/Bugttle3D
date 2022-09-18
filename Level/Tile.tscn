@@ -8,6 +8,7 @@
 
 [node name="Tile" type="StaticBody"]
 script = ExtResource( 1 )
+_shape = NodePath("Shape")
 
 [node name="Shape" type="CollisionShape" parent="."]
 shape = SubResource( 1 )
