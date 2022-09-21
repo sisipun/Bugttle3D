@@ -29,7 +29,7 @@ func _add_tile() -> Tile:
 
 
 func _on_tile_pressed(x, y) -> void:
-	if (_selected_tile):
+	if _selected_tile:
 		_selected_tile.set_unclicked()
 	
 	_selected_tile = _map[x * size + y]
