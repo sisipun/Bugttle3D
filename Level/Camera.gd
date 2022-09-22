@@ -1,34 +1,51 @@
 extends Camera
 
 
-export var speed = 1
+export var movement_speed = 20
+export var mouse_sensitivity = 20
+export var wheel_sensitivity = 50
 
 
-var velocity = Vector3.ZERO
-
+var mouse_movement = Vector2.ZERO
+var pitch = 0
+var yaw = 0
 
 
 func _process(delta: float) -> void:
-	var direction: Vector3 = Vector3.ZERO
+	var movement_direction = Vector2.ZERO
+	var zoom_direction = 0
 	
+	if Input.is_action_pressed("camera_rotation"):
+		pitch = fmod(pitch - mouse_movement.x * mouse_sensitivity * delta, 360)
+		yaw = max(min(yaw - mouse_movement.y * mouse_sensitivity * delta, 0), -90)
+		set_rotation(Vector3(deg2rad(yaw), deg2rad(pitch), 0))
 	if Input.is_action_pressed("camera_forward"):
-		direction.z -= 1
+		movement_direction.y -= 1
 	if Input.is_action_pressed("camera_back"):
-		direction.z += 1
+		movement_direction.y += 1
 	if Input.is_action_pressed("camera_right"):
-		direction.x += 1
+		movement_direction.x += 1
 	if Input.is_action_pressed("camera_left"):
-		direction.x -= 1
+		movement_direction.x -= 1
+	if Input.is_action_just_released("camera_zoom_in"):
+		zoom_direction -= 1
+	if Input.is_action_just_released("camera_zoom_out"):
+		zoom_direction += 1
 	
-	if direction != Vector3.ZERO:
-		direction = direction.normalized()
+	if movement_direction != Vector2.ZERO:
+		movement_direction = movement_direction.normalized()
 	
-	velocity = direction * speed
-	transform.origin += velocity
+	var forward = Vector3(transform.basis.z.x, 0, transform.basis.z.z).normalized()
+	var right = Vector3(transform.basis.x.x, 0, transform.basis.x.z).normalized()
+	var relative_move_direction = (forward * movement_direction.y + right * movement_direction.x)
+	var relative_zoom_direction = transform.basis.z * zoom_direction
+	
+	transform.origin += relative_move_direction * movement_speed * delta
+	transform.origin += relative_zoom_direction * wheel_sensitivity * delta
+	
+	mouse_movement = Vector2.ZERO
 
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
-		pass
-		# TODO camra rotation
-		# look_at(project_ray_origin(event.position) + project_ray_normal(event.position), Vector3.UP)
+		mouse_movement = event.relative
