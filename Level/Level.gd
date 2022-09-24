@@ -17,14 +17,14 @@ func _ready() -> void:
 		for y in range(size):
 			var tile: Tile = _add_tile()
 			var offset: float = (size - 1.0) / 2.0
-			tile.init(x, y, Vector3((x - offset) * tile.length(), 0, (y - offset) * tile.width()))
+			tile.init(x, y, 1, Vector3((x - offset) * tile.length(), 0, (y - offset) * tile.width()))
 
 
 func _add_tile() -> Tile:
 	var tile: Tile = _tile_scene.instance()
 	add_child(tile)
 	_map.append(tile)
-	tile.connect("pressed", self, "_on_tile_pressed")
+	assert(tile.connect("pressed", self, "_on_tile_pressed") == OK)
 	return tile
 
 

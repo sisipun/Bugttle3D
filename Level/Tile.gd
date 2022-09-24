@@ -15,12 +15,14 @@ export (Material) var _clicked_material
 
 var _x = 0
 var _y = 0
+var _cost = 0
 
 
-func init(x: int, y: int, position: Vector3) -> void:
+func init(x: int, y: int, cost: int, position: Vector3) -> void:
 	self.transform.origin = position
 	self._x = x
 	self._y = y
+	self._cost = cost
 	self.set_unclicked()
 
 
@@ -36,6 +38,10 @@ func height() -> float:
 	return _shape.shape.extents.z * 2
 
 
+func cost() -> int:
+	return _cost
+
+
 func set_clicked():
 	_body.set_material_override(_clicked_material)
 
@@ -44,6 +50,6 @@ func set_unclicked():
 	_body.set_material_override(_material)
 
 
-func _on_event(camera: Node, event: InputEvent, position: Vector3, normal: Vector3, shape_idx: int) -> void:
+func _on_event(_camera: Node, event: InputEvent, _position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.is_pressed() and event.button_index == BUTTON_LEFT:
 		emit_signal("pressed", _x, _y)
