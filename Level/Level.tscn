@@ -1,12 +1,15 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Level/Level.gd" type="Script" id=1]
 [ext_resource path="res://Level/Tile.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Level/Camera.gd" type="Script" id=3]
+[ext_resource path="res://Data/Tiles/Ground.tres" type="Resource" id=4]
+[ext_resource path="res://Data/Tiles/Sand.tres" type="Resource" id=5]
 
 [node name="Level" type="Spatial"]
 script = ExtResource( 1 )
 _tile_scene = ExtResource( 2 )
+_tile_types = [ ExtResource( 4 ), ExtResource( 5 ) ]
 size = 10
 
 [node name="Camera" type="Camera" parent="."]

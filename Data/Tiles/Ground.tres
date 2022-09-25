@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://Level/Data/TileData.gd" type="Script" id=1]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0.215686, 0.623529, 0.0666667, 1 )
+
+[resource]
+script = ExtResource( 1 )
+cost = 1
+material = SubResource( 1 )

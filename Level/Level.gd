@@ -5,6 +5,7 @@ class_name Level
 
 
 export (PackedScene) var _tile_scene = _tile_scene as PackedScene
+export (Array, Resource) var _tile_types 
 export (int) var size = 5
 
 
@@ -17,7 +18,13 @@ func _ready() -> void:
 		for y in range(size):
 			var tile: Tile = _add_tile()
 			var offset: float = (size - 1.0) / 2.0
-			tile.init(x, y, 1, Vector3((x - offset) * tile.length(), 0, (y - offset) * tile.width()))
+			var tile_type_index = randi() % len(_tile_types)
+			tile.init(
+				x, 
+				y, 
+				_tile_types[tile_type_index], 
+				Vector3((x - offset) * tile.length(), 0, (y - offset) * tile.width())
+			)
 
 
 func _add_tile() -> Tile:

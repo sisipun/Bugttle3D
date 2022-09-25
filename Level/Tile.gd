@@ -9,20 +9,21 @@ signal pressed(x, y)
 
 export (NodePath) onready var _shape = get_node(_shape) as CollisionShape
 export (NodePath) onready var _body = get_node(_body) as MeshInstance
-export (Material) var _material
 export (Material) var _clicked_material
 
 
 var _x = 0
 var _y = 0
 var _cost = 0
+var _material = null
 
 
-func init(x: int, y: int, cost: int, position: Vector3) -> void:
+func init(x: int, y: int, data: TileData, position: Vector3) -> void:
 	self.transform.origin = position
 	self._x = x
 	self._y = y
-	self._cost = cost
+	self._cost = data.cost
+	self._material = data.material
 	self.set_unclicked()
 
 

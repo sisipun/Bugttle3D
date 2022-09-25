@@ -18,10 +18,16 @@ _global_script_classes=[ {
 "class": "Tile",
 "language": "GDScript",
 "path": "res://Level/Tile.gd"
+}, {
+"base": "Resource",
+"class": "TileData",
+"language": "GDScript",
+"path": "res://Level/Data/TileData.gd"
 } ]
 _global_script_class_icons={
 "Level": "",
-"Tile": ""
+"Tile": "",
+"TileData": ""
 }
 
 [application]
