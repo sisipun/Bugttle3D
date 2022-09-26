@@ -11,6 +11,10 @@ var pitch = 0
 var yaw = 0
 
 
+func _ready() -> void:
+	set_rotation(Vector3(0, 0, 0))
+
+
 func _process(delta: float) -> void:
 	var movement_direction = Vector2.ZERO
 	var zoom_direction = 0
