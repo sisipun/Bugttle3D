@@ -43,11 +43,11 @@ func cost() -> int:
 	return _cost
 
 
-func set_clicked():
+func set_clicked() -> void:
 	_body.set_material_override(_clicked_material)
 
 
-func set_unclicked():
+func set_unclicked() -> void:
 	_body.set_material_override(_material)
 
 

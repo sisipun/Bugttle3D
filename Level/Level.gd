@@ -5,7 +5,9 @@ class_name Level
 
 
 export (PackedScene) var _tile_scene = _tile_scene as PackedScene
-export (Array, Resource) var _tile_types 
+export (PackedScene) var _bug_scene = _bug_scene as PackedScene
+export (Array, Resource) var _tile_types
+export (Array, Resource) var _bug_types 
 export (int) var size = 5
 
 
@@ -27,6 +29,18 @@ func _ready() -> void:
 			)
 
 
+func _on_tile_pressed(x, y) -> void:
+	if _selected_tile:
+		_selected_tile.set_unclicked()
+	
+	_selected_tile = _map[x * size + y]
+	_selected_tile.set_clicked()
+	# TODO remove
+	var bug = _add_bug()
+	bug.init(_bug_types[1])
+	bug.transform.origin = _selected_tile.transform.origin
+
+
 func _add_tile() -> Tile:
 	var tile: Tile = _tile_scene.instance()
 	add_child(tile)
@@ -35,9 +49,7 @@ func _add_tile() -> Tile:
 	return tile
 
 
-func _on_tile_pressed(x, y) -> void:
-	if _selected_tile:
-		_selected_tile.set_unclicked()
-	
-	_selected_tile = _map[x * size + y]
-	_selected_tile.set_clicked()
+func _add_bug() -> Bug:
+	var bug: Bug = _bug_scene.instance()
+	add_child(bug)
+	return bug

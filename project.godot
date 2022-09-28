@@ -9,6 +9,16 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "KinematicBody",
+"class": "Bug",
+"language": "GDScript",
+"path": "res://Level/Bug.gd"
+}, {
+"base": "Resource",
+"class": "BugData",
+"language": "GDScript",
+"path": "res://Level/Data/BugData.gd"
+}, {
 "base": "Spatial",
 "class": "Level",
 "language": "GDScript",
@@ -25,6 +35,8 @@ _global_script_classes=[ {
 "path": "res://Level/Data/TileData.gd"
 } ]
 _global_script_class_icons={
+"Bug": "",
+"BugData": "",
 "Level": "",
 "Tile": "",
 "TileData": ""

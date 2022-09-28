@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Spider.obj-c829766021c789c5961c70f4ca76acfc.mesh"
+
+[deps]
+
+files=[ "res://.import/Spider.obj-c829766021c789c5961c70f4ca76acfc.mesh" ]
+
+source_file="res://Assets/Spider/Spider.obj"
+dest_files=[ "res://.import/Spider.obj-c829766021c789c5961c70f4ca76acfc.mesh", "res://.import/Spider.obj-c829766021c789c5961c70f4ca76acfc.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286
