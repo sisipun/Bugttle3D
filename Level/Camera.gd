@@ -6,9 +6,9 @@ export var mouse_sensitivity = 20
 export var wheel_sensitivity = 50
 
 
-var mouse_movement = Vector2.ZERO
-var pitch = 0
-var yaw = 0
+var mouse_movement: Vector2 = Vector2.ZERO
+var pitch: int = 0
+var yaw: int = 0
 
 
 func _ready() -> void:

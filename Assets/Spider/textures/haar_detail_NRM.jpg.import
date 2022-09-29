@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/haar_detail_NRM.jpg-75594a2db9c9f3e2c3a1c0f5097b5f57.stex"
+path="res://.import/haar_detail_NRM.jpg-a592f36a39f69b95bea158ba2db8a63b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Spider/textures/haar_detail_NRM.jpg"
-dest_files=[ "res://.import/haar_detail_NRM.jpg-75594a2db9c9f3e2c3a1c0f5097b5f57.stex" ]
+source_file="res://Assets/Spider/Textures/haar_detail_NRM.jpg"
+dest_files=[ "res://.import/haar_detail_NRM.jpg-a592f36a39f69b95bea158ba2db8a63b.stex" ]
 
 [params]
 

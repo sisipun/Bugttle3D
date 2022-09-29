@@ -12,10 +12,10 @@ export (NodePath) onready var _body = get_node(_body) as MeshInstance
 export (Material) var _clicked_material
 
 
-var _x = 0
-var _y = 0
-var _cost = 0
-var _material = null
+var _x: int = 0
+var _y: int = 0
+var _cost: int = 0
+var _material: Material = null
 
 
 func init(x: int, y: int, data: TileData, position: Vector3) -> void:

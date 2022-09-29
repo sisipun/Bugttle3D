@@ -13,6 +13,7 @@ export (int) var size = 5
 
 var _map: Array = []
 var _selected_tile: Tile = null
+var _current_team_id: int = 0
 
 
 func _ready() -> void:
@@ -37,8 +38,9 @@ func _on_tile_pressed(x, y) -> void:
 	_selected_tile.set_clicked()
 	# TODO remove
 	var bug = _add_bug()
-	bug.init(_bug_types[1])
+	bug.init(_current_team_id, _bug_types[_current_team_id])
 	bug.transform.origin = _selected_tile.transform.origin
+	_current_team_id = 1 - _current_team_id
 
 
 func _add_tile() -> Tile:

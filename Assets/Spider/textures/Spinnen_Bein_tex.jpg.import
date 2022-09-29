@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/Spinnen_Bein_tex.jpg-26a71f0c72a9cd0d6d9f9192da5e3fb2.s3tc.stex"
-path.etc2="res://.import/Spinnen_Bein_tex.jpg-26a71f0c72a9cd0d6d9f9192da5e3fb2.etc2.stex"
+path.s3tc="res://.import/Spinnen_Bein_tex.jpg-f2d7d034dcf39c83e5183d378ea97e5f.s3tc.stex"
+path.etc2="res://.import/Spinnen_Bein_tex.jpg-f2d7d034dcf39c83e5183d378ea97e5f.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/Spider/textures/Spinnen_Bein_tex.jpg"
-dest_files=[ "res://.import/Spinnen_Bein_tex.jpg-26a71f0c72a9cd0d6d9f9192da5e3fb2.s3tc.stex", "res://.import/Spinnen_Bein_tex.jpg-26a71f0c72a9cd0d6d9f9192da5e3fb2.etc2.stex" ]
+source_file="res://Assets/Spider/Textures/Spinnen_Bein_tex.jpg"
+dest_files=[ "res://.import/Spinnen_Bein_tex.jpg-f2d7d034dcf39c83e5183d378ea97e5f.s3tc.stex", "res://.import/Spinnen_Bein_tex.jpg-f2d7d034dcf39c83e5183d378ea97e5f.etc2.stex" ]
 
 [params]
 

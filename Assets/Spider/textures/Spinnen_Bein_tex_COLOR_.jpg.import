@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Spinnen_Bein_tex_COLOR_.jpg-f226e5cf2ddf20b570db41f447677378.stex"
+path="res://.import/Spinnen_Bein_tex_COLOR_.jpg-cf1a346c79c55c1502bc03a80f1eb578.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Spider/textures/Spinnen_Bein_tex_COLOR_.jpg"
-dest_files=[ "res://.import/Spinnen_Bein_tex_COLOR_.jpg-f226e5cf2ddf20b570db41f447677378.stex" ]
+source_file="res://Assets/Spider/Textures/Spinnen_Bein_tex_COLOR_.jpg"
+dest_files=[ "res://.import/Spinnen_Bein_tex_COLOR_.jpg-cf1a346c79c55c1502bc03a80f1eb578.stex" ]
 
 [params]
 
