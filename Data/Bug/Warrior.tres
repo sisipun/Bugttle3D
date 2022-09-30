@@ -9,6 +9,6 @@ health = 3
 attack_power = 2
 attack_range = 1
 mesh = ExtResource( 2 )
-translation = Vector3( 0, 1, 0 )
+translation = Vector3( 0, 0, 0 )
 rotation_degrees = Vector3( 0, 0, 0 )
 scale = Vector3( 0.01, 0.01, 0.01 )

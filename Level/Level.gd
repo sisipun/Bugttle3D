@@ -13,7 +13,9 @@ export (int) var size = 5
 
 var _map: Array = []
 var _selected_tile: Tile = null
-var _current_team_id: int = 0
+var _teams: Array = [0, 1]
+var _current_team: int = 0
+var _initial_bug_count: int = 3
 
 
 func _ready() -> void:
@@ -28,6 +30,15 @@ func _ready() -> void:
 				_tile_types[tile_type_index], 
 				Vector3((x - offset) * tile.length(), 0, (y - offset) * tile.width())
 			)
+	
+	for team in _teams:
+		for i in _initial_bug_count: 
+			var bug: Bug = _add_bug()
+			bug.init(team, _bug_types[randi() % len(_teams)])
+			var bug_tile: Tile = _map[-team + pow(-1, team) * i];
+			bug.transform.origin = bug_tile.transform.origin + Vector3(0, bug_tile.height() / 2, 0)
+	
+	_current_team = _teams[0]
 
 
 func _on_tile_pressed(x, y) -> void:
@@ -36,11 +47,6 @@ func _on_tile_pressed(x, y) -> void:
 	
 	_selected_tile = _map[x * size + y]
 	_selected_tile.set_clicked()
-	# TODO remove
-	var bug = _add_bug()
-	bug.init(_current_team_id, _bug_types[_current_team_id])
-	bug.transform.origin = _selected_tile.transform.origin
-	_current_team_id = 1 - _current_team_id
 
 
 func _add_tile() -> Tile:
