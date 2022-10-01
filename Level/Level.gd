@@ -36,7 +36,7 @@ func _ready() -> void:
 			var bug: Bug = _add_bug()
 			bug.init(team, _bug_types[randi() % len(_teams)])
 			var bug_tile: Tile = _map[-team + pow(-1, team) * i];
-			bug.transform.origin = bug_tile.transform.origin + Vector3(0, bug_tile.height() / 2, 0)
+			bug_tile.add_bug(bug)
 	
 	_current_team = _teams[0]
 
@@ -45,8 +45,12 @@ func _on_tile_pressed(x, y) -> void:
 	if _selected_tile:
 		_selected_tile.set_unclicked()
 	
-	_selected_tile = _map[x * size + y]
-	_selected_tile.set_clicked()
+	var new_selected_tile: Tile = _map[x * size + y]
+	if _selected_tile && _try_move_bug(_selected_tile, new_selected_tile):
+		_selected_tile = null
+	else:
+		_selected_tile = new_selected_tile
+		_selected_tile.set_clicked()
 
 
 func _add_tile() -> Tile:
@@ -61,3 +65,13 @@ func _add_bug() -> Bug:
 	var bug: Bug = _bug_scene.instance()
 	add_child(bug)
 	return bug
+
+
+func _try_move_bug(old_tile: Tile, new_tile: Tile) -> bool:
+	var bug: Bug = old_tile.bug()
+	if !bug or bug.team() != _current_team:
+		return false
+	
+	old_tile.remove_bug()
+	new_tile.add_bug(bug)
+	return true

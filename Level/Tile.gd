@@ -16,6 +16,7 @@ var _x: int = 0
 var _y: int = 0
 var _cost: int = 0
 var _material: Material = null
+var _bug: Bug = null
 
 
 func init(x: int, y: int, data: TileData, position: Vector3) -> void:
@@ -41,6 +42,23 @@ func height() -> float:
 
 func cost() -> int:
 	return _cost
+
+
+func bug() -> Bug:
+	return self._bug
+
+
+func has_bug() -> bool:
+	return self._bug != null
+
+
+func add_bug(bug: Bug) -> void:
+	self._bug = bug
+	self._bug.transform.origin = transform.origin + Vector3(0, height() / 2, 0)
+
+
+func remove_bug() -> void:
+	self._bug = null
 
 
 func set_clicked() -> void:

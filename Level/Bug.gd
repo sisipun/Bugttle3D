@@ -27,5 +27,9 @@ func init(team_id: int, data: BugData) -> void:
 	self._body.scale = data.scale
 
 
+func team() -> int:
+	return _team_id
+
+
 func _ready() -> void:
 	self._health = self._max_health
