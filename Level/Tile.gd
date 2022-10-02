@@ -19,13 +19,14 @@ var _material: Material = null
 var _bug: Bug = null
 
 
-func init(x: int, y: int, data: TileData, position: Vector3) -> void:
+func init(x: int, y: int, data: TileData, position: Vector3) -> Tile:
 	self.transform.origin = position
 	self._x = x
 	self._y = y
 	self._cost = data.cost
 	self._material = data.material
 	self.set_unclicked()
+	return self
 
 
 func length() -> float:
@@ -71,4 +72,4 @@ func set_unclicked() -> void:
 
 func _on_event(_camera: Node, event: InputEvent, _position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.is_pressed() and event.button_index == BUTTON_LEFT:
-		emit_signal("pressed", _x, _y)
+		emit_signal("pressed", self)

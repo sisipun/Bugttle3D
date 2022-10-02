@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "BaseController",
+"language": "GDScript",
+"path": "res://Level/Controller/BaseController.gd"
+}, {
 "base": "KinematicBody",
 "class": "Bug",
 "language": "GDScript",
@@ -24,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Level/Level.gd"
 }, {
+"base": "Node",
+"class": "Team",
+"language": "GDScript",
+"path": "res://Level/Team.gd"
+}, {
 "base": "StaticBody",
 "class": "Tile",
 "language": "GDScript",
@@ -33,13 +43,21 @@ _global_script_classes=[ {
 "class": "TileData",
 "language": "GDScript",
 "path": "res://Level/Data/TileData.gd"
+}, {
+"base": "BaseController",
+"class": "UserController",
+"language": "GDScript",
+"path": "res://Level/Controller/UserController.gd"
 } ]
 _global_script_class_icons={
+"BaseController": "",
 "Bug": "",
 "BugData": "",
 "Level": "",
+"Team": "",
 "Tile": "",
-"TileData": ""
+"TileData": "",
+"UserController": ""
 }
 
 [application]

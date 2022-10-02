@@ -15,7 +15,6 @@ _tile_scene = ExtResource( 2 )
 _bug_scene = ExtResource( 8 )
 _tile_types = [ ExtResource( 4 ), ExtResource( 5 ) ]
 _bug_types = [ ExtResource( 7 ), ExtResource( 6 ) ]
-size = 10
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.956981, 0.290151, 0, -0.290151, 0.956981, 0, 4, 6 )
