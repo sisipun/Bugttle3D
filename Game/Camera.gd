@@ -1,9 +1,9 @@
 extends Camera
 
 
-export var movement_speed = 20
-export var mouse_sensitivity = 20
-export var wheel_sensitivity = 50
+export(float) var movement_speed = 20.0
+export(float) var mouse_sensitivity = 20.0
+export(float) var wheel_sensitivity = 50.0
 
 
 var mouse_movement: Vector2 = Vector2.ZERO

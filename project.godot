@@ -12,42 +12,42 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "BaseController",
 "language": "GDScript",
-"path": "res://Level/Controller/BaseController.gd"
+"path": "res://Game/Controller/BaseController.gd"
 }, {
 "base": "KinematicBody",
 "class": "Bug",
 "language": "GDScript",
-"path": "res://Level/Bug.gd"
+"path": "res://Game/Bug.gd"
 }, {
 "base": "Resource",
 "class": "BugData",
 "language": "GDScript",
-"path": "res://Level/Data/BugData.gd"
+"path": "res://Game/Data/BugData.gd"
 }, {
 "base": "Spatial",
 "class": "Level",
 "language": "GDScript",
-"path": "res://Level/Level.gd"
+"path": "res://Game/Level.gd"
 }, {
 "base": "Node",
 "class": "Team",
 "language": "GDScript",
-"path": "res://Level/Team.gd"
+"path": "res://Game/Team.gd"
 }, {
 "base": "StaticBody",
 "class": "Tile",
 "language": "GDScript",
-"path": "res://Level/Tile.gd"
+"path": "res://Game/Tile.gd"
 }, {
 "base": "Resource",
 "class": "TileData",
 "language": "GDScript",
-"path": "res://Level/Data/TileData.gd"
+"path": "res://Game/Data/TileData.gd"
 }, {
 "base": "BaseController",
 "class": "UserController",
 "language": "GDScript",
-"path": "res://Level/Controller/UserController.gd"
+"path": "res://Game/Controller/UserController.gd"
 } ]
 _global_script_class_icons={
 "BaseController": "",
@@ -63,7 +63,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Buggtle3D"
-run/main_scene="res://Level/Level.tscn"
+run/main_scene="res://Game/Level.tscn"
 config/icon="res://Assets/icon.png"
 
 [gui]
@@ -105,6 +105,11 @@ camera_zoom_in={
 camera_zoom_out={
 "deadzone": 0.5,
 "events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":5,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+controller_cancel={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":2,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
 

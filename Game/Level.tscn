@@ -1,0 +1,25 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Game/Camera.gd" type="Script" id=1]
+[ext_resource path="res://Game/Level.gd" type="Script" id=2]
+[ext_resource path="res://Data/Tile/Ground.tres" type="Resource" id=3]
+[ext_resource path="res://Data/Bug/Warrior.tres" type="Resource" id=4]
+[ext_resource path="res://Data/Bug/Archer.tres" type="Resource" id=5]
+[ext_resource path="res://Data/Tile/Sand.tres" type="Resource" id=6]
+[ext_resource path="res://Game/Bug.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Game/Tile.tscn" type="PackedScene" id=8]
+
+[node name="Level" type="Spatial"]
+script = ExtResource( 2 )
+_tile_scene = ExtResource( 8 )
+_bug_scene = ExtResource( 7 )
+_tile_types = [ ExtResource( 3 ), ExtResource( 6 ) ]
+_bug_types = [ ExtResource( 5 ), ExtResource( 4 ) ]
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.956981, 0.290151, 0, -0.290151, 0.956981, 0, 4, 6 )
+script = ExtResource( 1 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+
+[node name="BakedLightmap" type="BakedLightmap" parent="."]

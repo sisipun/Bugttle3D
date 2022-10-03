@@ -4,7 +4,7 @@ extends StaticBody
 class_name Tile
 
 
-signal pressed(x, y)
+signal pressed(tile)
 
 
 export (NodePath) onready var _shape = get_node(_shape) as CollisionShape
@@ -70,6 +70,15 @@ func set_unclicked() -> void:
 	_body.set_material_override(_material)
 
 
-func _on_event(_camera: Node, event: InputEvent, _position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
-	if event is InputEventMouseButton and event.is_pressed() and event.button_index == BUTTON_LEFT:
+func _on_event(
+	_camera: Node, 
+	event: InputEvent, 
+	_position: Vector3, 
+	_normal: Vector3, 
+	_shape_idx: int
+) -> void:
+	if (
+		event is InputEventMouseButton and event.is_pressed() 
+		and event.button_index == BUTTON_LEFT
+	):
 		emit_signal("pressed", self)

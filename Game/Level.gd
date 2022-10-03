@@ -15,6 +15,7 @@ export (int) var _bugs_count = 3
 var _map: Array = []
 var _team_to_controller: Dictionary = {}
 var _current_team: int = -1
+var _current_controller: BaseController = null
 
 
 func _ready() -> void:
@@ -27,38 +28,59 @@ func _ready() -> void:
 				x, 
 				y, 
 				_tile_types[tile_type_index], 
-				Vector3((x - offset) * tile.length(), 0, (y - offset) * tile.width())
+				Vector3(
+					(x - offset) * tile.length(), 
+					0, 
+					(y - offset) * tile.width()
+				)
 			)
 	
 	_team_to_controller[Team.RED] = UserController.new().init(Team.RED)
 	for i in _bugs_count: 
-		var bug: Bug = _add_bug().init(Team.RED, _bug_types[randi() % len(_bug_types)])
+		var bug_type = _bug_types[randi() % len(_bug_types)]
+		var bug: Bug = _add_bug().init(Team.RED, bug_type)
 		var bug_tile: Tile = _map[i];
 		bug_tile.add_bug(bug)
 	
 	_team_to_controller[Team.BLUE] = UserController.new().init(Team.BLUE)
-	for i in _bugs_count: 
-		var bug: Bug = _add_bug().init(Team.BLUE, _bug_types[randi() % len(_bug_types)])
+	for i in _bugs_count:
+		var bug_type = _bug_types[randi() % len(_bug_types)]
+		var bug: Bug = _add_bug().init(Team.BLUE, bug_type)
 		var bug_tile: Tile = _map[-i - 1];
 		bug_tile.add_bug(bug)
 	
 	start_turn(Team.RED)
 
 
+func _process(delta: float) -> void:
+	_current_controller.process_turn(delta)
+
+
 func start_turn(team: int) -> void:
 	_current_team = team
-	var new_controller = _team_to_controller[_current_team] 
-	new_controller.start_turn()
+	_current_controller = _team_to_controller[_current_team] 
+	_current_controller.start_turn()
 	for tile in _map:
-		assert(tile.connect("pressed", new_controller, "on_tile_pressed") == OK)
+		assert(tile.connect(
+			"pressed", 
+			_current_controller, 
+			"on_tile_pressed"
+		) == OK)
 
 
 func end_turn() -> void:
-	var current_controller: BaseController = _team_to_controller[_current_team]
-	current_controller.end_turn()
+	_current_controller.end_turn()
 	for tile in _map:
-		assert(tile.disconnect("pressed", current_controller, "on_tile_pressed") == OK)
+		assert(tile.disconnect(
+			"pressed", 
+			_current_controller, 
+			"on_tile_pressed"
+		) == OK)
 	start_turn(1 - _current_team)
+
+
+func _on_bug_dead(bug: Bug) -> void:
+	bug.queue_free()
 
 
 func _add_tile() -> Tile:
@@ -71,4 +93,5 @@ func _add_tile() -> Tile:
 func _add_bug() -> Bug:
 	var bug: Bug = _bug_scene.instance()
 	add_child(bug)
+	assert(bug.connect("dead", self, "_on_bug_dead") == OK)
 	return bug

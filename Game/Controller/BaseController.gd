@@ -16,6 +16,10 @@ func start_turn() -> void:
 	pass
 
 
+func process_turn(_delta: float) -> void:
+	pass
+
+
 func end_turn() -> void:
 	pass
 
