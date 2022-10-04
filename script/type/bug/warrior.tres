@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://script/type/bug/bug_type.gd" type="Script" id=1]
+[ext_resource path="res://asset/mesh/spider/Spider.obj" type="ArrayMesh" id=2]
+
+[resource]
+script = ExtResource( 1 )
+health = 3
+attack_power = 2
+attack_range = 1
+mesh = ExtResource( 2 )
+translation = Vector3( 0, 0, 0 )
+rotation_degrees = Vector3( 0, 0, 0 )
+scale = Vector3( 0.01, 0.01, 0.01 )
