@@ -11,16 +11,14 @@ export (Material) var _clicked_material
 
 var bug: Bug = null setget add_bug, get_bug
 var cost: int = 0 setget , get_cost
+var position: Vector2 = Vector2.ZERO setget , get_position
 
-var _x: int = 0
-var _y: int = 0
 var _material: Material = null
 
 
 func init(x: int, y: int, type: TileType, position: Vector3) -> Tile:
 	self.transform.origin = position
-	self._x = x
-	self._y = y
+	self.position = Vector2(x, y)
 	self.cost = type.cost
 	self._material = type.material
 	self.set_unclicked()
@@ -37,6 +35,10 @@ func width() -> float:
 
 func height() -> float:
 	return _shape.shape.extents.z * 2
+
+
+func get_position() -> Vector2:
+	return position
 
 
 func get_cost() -> int:

@@ -35,6 +35,16 @@ _global_script_classes=[ {
 "path": "res://script/main_camera.gd"
 }, {
 "base": "Node",
+"class": "PathFinder",
+"language": "GDScript",
+"path": "res://script/path/path_finder.gd"
+}, {
+"base": "Node",
+"class": "PathInfo",
+"language": "GDScript",
+"path": "res://script/path/path_info.gd"
+}, {
+"base": "Node",
 "class": "Team",
 "language": "GDScript",
 "path": "res://script/entities/team.gd"
@@ -60,6 +70,8 @@ _global_script_class_icons={
 "BugType": "",
 "Level": "",
 "MainCamera": "",
+"PathFinder": "",
+"PathInfo": "",
 "Team": "",
 "Tile": "",
 "TileType": "",

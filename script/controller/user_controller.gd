@@ -29,11 +29,19 @@ func _try_bug_action(old_tile: Tile, new_tile: Tile) -> bool:
 	if !old_tile_bug or old_tile_bug.team != team:
 		return false
 	
-	if !new_tile_bug:
-		old_tile.remove_bug()
-		new_tile.add_bug(old_tile_bug)
-		return true
+	return _try_bug_move(old_tile, old_tile_bug, new_tile) if !new_tile_bug else _try_bug_attack(old_tile_bug, new_tile_bug)
+
+
+func _try_bug_move(old_tile: Tile, old_tile_bug: Bug, new_tile: Tile):
+	if PathFinder.find_path(old_tile, new_tile).value == []:
+		return false
 	
+	old_tile.remove_bug()
+	new_tile.add_bug(old_tile_bug)
+	return true
+
+
+func _try_bug_attack(old_tile_bug: Bug, new_tile_bug: Bug):
 	if new_tile_bug.team == team:
 		return false
 	
