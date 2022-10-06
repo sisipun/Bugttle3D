@@ -5,6 +5,11 @@ extends BaseController
 var _selected_tile: Tile = null
 
 
+func before_turn() -> void:
+	for tile in _field.tiles:
+		assert(tile.connect("pressed", self, "_on_tile_pressed", [tile]) == OK)
+
+
 func process_turn(_delta: float) -> void:
 	if Input.is_action_just_pressed("controller_cancel"):
 		_cancel()
@@ -12,7 +17,12 @@ func process_turn(_delta: float) -> void:
 		emit_signal("turn_ended")
 
 
-func on_tile_pressed(tile: Tile) -> void:
+func after_turn() -> void:
+	for tile in _field.tiles:
+		tile.disconnect("pressed", self, "_on_tile_pressed")
+
+
+func _on_tile_pressed(tile: Tile) -> void:
 	if _selected_tile:
 		_selected_tile.set_unclicked()
 	

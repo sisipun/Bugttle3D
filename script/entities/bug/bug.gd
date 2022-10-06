@@ -5,9 +5,6 @@ extends KinematicBody
 signal dead(bug)
 
 
-export (NodePath) onready var _shape = get_node(_shape) as CollisionShape
-export (NodePath) onready var _body = get_node(_body) as MeshInstance
-
 var team: int = -1 setget , get_team
 var move_range: int = 0 setget , get_move_range
 var attack_power: int = 0 setget , get_attack_power
@@ -31,10 +28,10 @@ func init(bug_team: int, type: BugType) -> Bug:
 	self.dead = false
 	self._max_health = type.health
 	self._health = type.health
-	self._body.mesh = type.mesh
-	self._body.translation = type.translation
-	self._body.rotation_degrees = type.rotation_degrees
-	self._body.scale = type.scale
+	$Body.mesh = type.mesh
+	$Body.translation = type.translation
+	$Body.rotation_degrees = type.rotation_degrees
+	$Body.scale = type.scale
 	return self
 
 

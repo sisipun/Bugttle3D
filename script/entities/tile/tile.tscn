@@ -10,8 +10,6 @@
 
 [node name="Tile" type="StaticBody"]
 script = ExtResource( 1 )
-_shape = NodePath("Shape")
-_body = NodePath("Body")
 _clicked_material = ExtResource( 3 )
 
 [node name="Shape" type="CollisionShape" parent="."]

@@ -6,10 +6,12 @@ signal turn_ended
 
 
 var team: int = -1 setget , get_team
+var _field: Field = null
 
 
-func init(bug_team: int) -> BaseController:
+func init(bug_team: int, field: Field) -> BaseController:
 	self.team = bug_team
+	self._field = field
 	return self
 
 
@@ -22,10 +24,6 @@ func process_turn(_delta: float) -> void:
 
 
 func after_turn() -> void:
-	pass
-
-
-func on_tile_pressed(_tile: Tile) -> void:
 	pass
 
 

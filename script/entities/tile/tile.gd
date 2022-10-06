@@ -5,8 +5,6 @@ extends StaticBody
 signal pressed(tile)
 
 
-export (NodePath) onready var _shape = get_node(_shape) as CollisionShape
-export (NodePath) onready var _body = get_node(_body) as MeshInstance
 export (Material) var _clicked_material
 
 var bug: Bug = null setget add_bug, get_bug
@@ -16,25 +14,33 @@ var position: Vector2 = Vector2.ZERO setget , get_position
 var _material: Material = null
 
 
-func init(x: int, y: int, type: TileType, position: Vector3) -> Tile:
-	self.transform.origin = position
-	self.position = Vector2(x, y)
+func init(
+	new_position: Vector2, 
+	field_size: Vector2, 
+	type: TileType
+) -> Tile:
+	self.position = new_position
 	self.cost = type.cost
 	self._material = type.material
+	self.transform.origin = Vector3(
+		(position.x - (field_size.x - 1.0) / 2.0) * length(), 
+		0, 
+		(position.y - (field_size.y - 1.0) / 2.0) * width()
+	)
 	self.set_unclicked()
 	return self
 
 
 func length() -> float:
-	return _shape.shape.extents.x * 2
+	return $Shape.shape.extents.x * 2
 
 
 func width() -> float:
-	return _shape.shape.extents.y * 2
+	return $Shape.shape.extents.y * 2
 
 
 func height() -> float:
-	return _shape.shape.extents.z * 2
+	return $Shape.shape.extents.z * 2
 
 
 func get_position() -> Vector2:
@@ -65,11 +71,11 @@ func remove_bug() -> void:
 
 
 func set_clicked() -> void:
-	_body.set_material_override(_clicked_material)
+	$Body.set_material_override(_clicked_material)
 
 
 func set_unclicked() -> void:
-	_body.set_material_override(_material)
+	$Body.set_material_override(_material)
 
 
 func _on_bug_dead() -> void:
