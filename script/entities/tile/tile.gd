@@ -9,23 +9,28 @@ export (Material) var _clicked_material
 
 var bug: Bug = null setget add_bug, get_bug
 var cost: int = 0 setget , get_cost
-var position: Vector2 = Vector2.ZERO setget , get_position
+var x: int = 0 setget, get_x
+var y: int = 0 setget, get_y
+var position: Vector2 setget , get_position
 
 var _material: Material = null
 
 
 func init(
-	new_position: Vector2, 
-	field_size: Vector2, 
+	new_x: int,
+	new_y: int, 
+	field_width: int, 
+	field_height: int,
 	type: TileType
 ) -> Tile:
-	self.position = new_position
+	self.x = new_x
+	self.y = new_y
 	self.cost = type.cost
 	self._material = type.material
 	self.transform.origin = Vector3(
-		(position.x - (field_size.x - 1.0) / 2.0) * length(), 
+		(x - (field_width - 1.0) / 2.0) * length(), 
 		0, 
-		(position.y - (field_size.y - 1.0) / 2.0) * width()
+		(y - (field_height - 1.0) / 2.0) * width()
 	)
 	self.set_unclicked()
 	return self
@@ -43,8 +48,16 @@ func height() -> float:
 	return $Shape.shape.extents.z * 2
 
 
+func get_x() -> int:
+	return x
+
+
+func get_y() -> int:
+	return y
+
+
 func get_position() -> Vector2:
-	return position
+	return Vector2(x, y)
 
 
 func get_cost() -> int:

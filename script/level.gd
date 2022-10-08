@@ -18,13 +18,14 @@ func _ready() -> void:
 	var tiles: Array = []
 	for _i in range(_field_size * _field_size):
 		tiles.append(_tile_types[randi() % len(_tile_types)])
-	_field = _field_scene.instance().init(Vector2(_field_size, _field_size), tiles)
+	_field = _field_scene.instance().init(_field_size, _field_size, tiles)
 	add_child(_field)
 	
 	_team_to_controller[Team.RED] = UserController.new().init(Team.RED, _field)
 	for i in _bugs_count: 
 		_field.add_bug(
-			Vector2(int(i / _field_size), i % _field_size), 
+			i / _field_size, 
+			i % _field_size, 
 			Team.RED, 
 			_bug_types[randi() % len(_bug_types)]
 		)
@@ -32,7 +33,8 @@ func _ready() -> void:
 	_team_to_controller[Team.BLUE] = UserController.new().init(Team.BLUE, _field)
 	for i in _bugs_count:
 		_field.add_bug(
-			Vector2(_field_size - 1 - int(i / _field_size), i % _field_size), 
+			_field_size - 1 - int(i / _field_size), 
+			i % _field_size, 
 			Team.BLUE, 
 			_bug_types[randi() % len(_bug_types)]
 		)
