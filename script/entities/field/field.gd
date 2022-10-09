@@ -32,6 +32,10 @@ func get_tiles() -> Array:
 	return tiles
 
 
+func get_bug_tile(bug: Bug) -> Tile:
+	return tiles[bug.get_x() * height + bug.get_y()]
+
+
 func add_bug(x: int, y: int, team: int, type: BugType) -> void:
 	var bug: Bug = _bug_scene.instance()
 	add_child(bug)

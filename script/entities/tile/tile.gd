@@ -76,6 +76,7 @@ func add_bug(new_bug: Bug) -> void:
 	bug = new_bug
 	bug.transform.origin = transform.origin + Vector3(0, height() / 2, 0)
 	assert(bug.connect("dead", self, "_on_bug_dead") == OK)
+	bug.set_position(x, y)
 
 
 func remove_bug() -> void:

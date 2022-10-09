@@ -10,6 +10,9 @@ var move_range: int = 0 setget , get_move_range
 var attack_power: int = 0 setget , get_attack_power
 var attack_range: int = 0 setget , get_attack_range
 var dead: bool = false setget , is_dead
+var x: int = -1 setget set_x, get_x
+var y: int = -1 setget set_y, get_y
+var position: Vector2 setget , get_position
 
 var _max_health: int = 0
 var _health: int = 0
@@ -66,3 +69,28 @@ func get_team() -> int:
 
 func is_dead() -> bool:
 	return dead
+
+
+func get_x() -> int:
+	return x
+
+
+func set_x(new_x: int) -> void:
+	x = new_x
+
+
+func get_y() -> int:
+	return y
+
+
+func set_y(new_y: int) -> void:
+	y = new_y
+
+
+func get_position() -> Vector2:
+	return Vector2(x, y)
+
+
+func set_position(new_x: int, new_y: int) -> void:
+	x = new_x
+	y = new_y

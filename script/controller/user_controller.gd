@@ -43,7 +43,7 @@ func _try_bug_action(old_tile: Tile, new_tile: Tile) -> bool:
 
 
 func _try_bug_move(old_tile: Tile, old_tile_bug: Bug, new_tile: Tile):
-	if PathFinder.find_path(old_tile, new_tile).value == []:
+	if PathFinder.find_path(old_tile.bug, new_tile).value == []:
 		return false
 	
 	old_tile.remove_bug()
