@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Skill",
+"class": "AttackSkill",
+"language": "GDScript",
+"path": "res://script/skill/attack_skill.gd"
+}, {
 "base": "Node",
 "class": "BaseController",
 "language": "GDScript",
@@ -54,7 +59,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://script/path/path_info.gd"
 }, {
-"base": "Node",
+"base": "Resource",
 "class": "Skill",
 "language": "GDScript",
 "path": "res://script/skill/skill.gd"
@@ -80,6 +85,7 @@ _global_script_classes=[ {
 "path": "res://script/controller/user_controller.gd"
 } ]
 _global_script_class_icons={
+"AttackSkill": "",
 "BaseController": "",
 "Bug": "",
 "BugType": "",

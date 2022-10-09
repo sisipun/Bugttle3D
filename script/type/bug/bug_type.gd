@@ -10,3 +10,4 @@ export(Mesh) var mesh = null
 export(Vector3) var translation = Vector3.ZERO
 export(Vector3) var rotation_degrees = Vector3.ZERO
 export(Vector3) var scale = Vector3.ONE
+export(Array, Resource) var skills = []

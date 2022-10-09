@@ -40,7 +40,7 @@ func add_bug(x: int, y: int, team: int, type: BugType) -> void:
 	var bug: Bug = _bug_scene.instance()
 	add_child(bug)
 	assert(bug.connect("dead", self, "_on_bug_dead", [bug]) == OK)
-	tiles[x * height + y].bug = bug.init(team, type)
+	tiles[x * height + y].bug = bug.init(x, y, team, type)
 
 
 func _add_tile(x: int, y: int, type: TileType):

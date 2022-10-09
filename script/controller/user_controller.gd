@@ -26,37 +26,20 @@ func _on_tile_pressed(tile: Tile) -> void:
 	if _selected_tile:
 		_selected_tile.set_unclicked()
 	
-	if _selected_tile && _try_bug_action(_selected_tile, tile):
+	if !_selected_tile or !_selected_tile.bug:
+		_selected_tile = tile
+		_selected_tile.set_clicked()
+		return
+	
+	var selected_bug: Bug = _selected_tile.bug
+	# todo select skill
+	var selected_skill = selected_bug.skills[0]
+	
+	if selected_skill.execute(selected_bug, tile, _field):
 		_selected_tile = null
 	else:
 		_selected_tile = tile
 		_selected_tile.set_clicked()
-
-
-func _try_bug_action(old_tile: Tile, new_tile: Tile) -> bool:
-	var old_tile_bug: Bug = old_tile.bug
-	var new_tile_bug: Bug = new_tile.bug
-	if !old_tile_bug or old_tile_bug.team != team:
-		return false
-	
-	return _try_bug_move(old_tile, old_tile_bug, new_tile) if !new_tile_bug else _try_bug_attack(old_tile_bug, new_tile_bug)
-
-
-func _try_bug_move(old_tile: Tile, old_tile_bug: Bug, new_tile: Tile):
-	if PathFinder.find_path(old_tile.bug, new_tile).value == []:
-		return false
-	
-	old_tile.remove_bug()
-	new_tile.add_bug(old_tile_bug)
-	return true
-
-
-func _try_bug_attack(old_tile_bug: Bug, new_tile_bug: Bug):
-	if new_tile_bug.team == team:
-		return false
-	
-	old_tile_bug.attack(new_tile_bug)
-	return true
 
 
 func _cancel() -> void:

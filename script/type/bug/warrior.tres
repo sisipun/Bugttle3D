@@ -1,7 +1,9 @@
-[gd_resource type="Resource" load_steps=3 format=2]
+[gd_resource type="Resource" load_steps=5 format=2]
 
 [ext_resource path="res://script/type/bug/bug_type.gd" type="Script" id=1]
 [ext_resource path="res://asset/mesh/spider/Spider.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://script/skill/attack_skill.tres" type="Resource" id=3]
+[ext_resource path="res://script/skill/movement_skill.tres" type="Resource" id=4]
 
 [resource]
 script = ExtResource( 1 )
@@ -13,3 +15,4 @@ mesh = ExtResource( 2 )
 translation = Vector3( 0, 0, 0 )
 rotation_degrees = Vector3( 0, 0, 0 )
 scale = Vector3( 0.01, 0.01, 0.01 )
+skills = [ ExtResource( 4 ), ExtResource( 3 ) ]
