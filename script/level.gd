@@ -2,13 +2,15 @@ class_name Level
 extends Spatial
 
 
-export (PackedScene) var _field_scene = _field_scene as PackedScene
+export (NodePath) onready var _field = get_node(_field) as Field
+export (NodePath) onready var _red_controller = get_node(_red_controller) as BaseController
+export (NodePath) onready var _blue_controller = get_node(_blue_controller) as BaseController
+
 export (int) var _field_size = 10
 export (Array, Resource) var _tile_types
 export (Array, Resource) var _bug_types
 export (int) var _bugs_count = 3
 
-var _field: Field = null
 var _team_to_controller: Dictionary = {}
 var _current_team: int = -1
 var _current_controller: BaseController = null
@@ -18,28 +20,28 @@ func _ready() -> void:
 	var tiles: Array = []
 	for _i in range(_field_size * _field_size):
 		tiles.append(_tile_types[randi() % len(_tile_types)])
-	_field = _field_scene.instance().init(_field_size, _field_size, tiles)
-	add_child(_field)
+	_field.init(tiles)
 	
-	_team_to_controller[Team.RED] = UserController.new().init(Team.RED, _field)
+	
+	_team_to_controller[Team.Side.RED] = _red_controller
 	for i in _bugs_count: 
 		_field.add_bug(
-			i / _field_size, 
-			i % _field_size, 
-			Team.RED, 
+			i / _field.width, 
+			i % _field.height, 
+			Team.Side.RED, 
 			_bug_types[randi() % len(_bug_types)]
 		)
 	
-	_team_to_controller[Team.BLUE] = UserController.new().init(Team.BLUE, _field)
+	_team_to_controller[Team.Side.BLUE] = _blue_controller
 	for i in _bugs_count:
 		_field.add_bug(
-			_field_size - 1 - int(i / _field_size), 
-			i % _field_size, 
-			Team.BLUE, 
+			_field.width - 1 - int(i / _field.width), 
+			i % _field.height, 
+			Team.Side.BLUE, 
 			_bug_types[randi() % len(_bug_types)]
 		)
 	
-	start_turn(Team.RED)
+	start_turn(Team.Side.RED)
 
 
 func _process(delta: float) -> void:

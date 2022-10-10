@@ -5,14 +5,12 @@ extends Node
 export (PackedScene) var _tile_scene = _tile_scene as PackedScene
 export (PackedScene) var _bug_scene = _bug_scene as PackedScene
 
-var width: int = 0 setget , get_width
-var height: int = 0 setget , get_height
+export (int) var width: int = 0 setget , get_width
+export (int) var height: int = 0 setget , get_height
 var tiles: Array = [] setget , get_tiles
 
 
-func init(new_width: int, new_height: int, tile_types: Array) -> Field:
-	self.width = new_width
-	self.height = new_height
+func init(tile_types: Array) -> Field:
 	self.tiles.resize(width * height)
 	for x in range(width):
 		for y in range(height):

@@ -3,6 +3,8 @@ extends BaseController
 
 
 var _selected_tile: Tile = null
+var _selected_bug: Bug = null
+var _selected_skill: Skill = null
 
 
 func before_turn() -> void:
@@ -26,24 +28,29 @@ func _on_tile_pressed(tile: Tile) -> void:
 	if _selected_tile:
 		_selected_tile.set_unclicked()
 	
-	if !_selected_tile or !_selected_tile.bug:
-		_selected_tile = tile
-		_selected_tile.set_clicked()
+	if !_selected_tile or !_selected_bug or !_selected_skill:
+		_select(tile)
 		return
 	
-	var selected_bug: Bug = _selected_tile.bug
-	# todo select skill
-	var selected_skill = selected_bug.skills[0]
-	
-	if selected_skill.execute(selected_bug, tile, _field):
-		_selected_tile = null
+	if (
+		_selected_bug.team == team 
+		and _selected_skill.execute(_selected_bug, tile, _field)
+	):
+		_cancel()
 	else:
-		_selected_tile = tile
-		_selected_tile.set_clicked()
+		_select(tile)
 
 
 func _cancel() -> void:
 	if _selected_tile:
 		_selected_tile.set_unclicked()
 	
-	_selected_tile = null
+	_select(null)
+
+
+func _select(tile: Tile) -> void:
+	_selected_tile = tile
+	_selected_bug = tile.bug if tile else null
+	_selected_skill = _selected_bug.skills[0] if _selected_bug and _selected_bug.team == team else null
+	if tile:
+		_selected_tile.set_clicked()
