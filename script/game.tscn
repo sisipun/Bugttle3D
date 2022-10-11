@@ -40,13 +40,23 @@ height = 10
 [node name="RedController" type="Node" parent="Level"]
 script = ExtResource( 9 )
 _field = NodePath("../Field")
+_ui = NodePath("../../Ui")
 
 [node name="BlueController" type="Node" parent="Level"]
 script = ExtResource( 9 )
 team = 1
 _field = NodePath("../Field")
+_ui = NodePath("../../Ui")
 
 [node name="Ui" type="Control" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 3 )
+_skill_icon = NodePath("SkillIcon")
+
+[node name="SkillIcon" type="TextureRect" parent="Ui"]
+margin_left = 50.0
+margin_top = 50.0
+margin_right = 100.0
+margin_bottom = 100.0
+expand = true
