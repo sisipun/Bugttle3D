@@ -3,9 +3,12 @@ extends Skill
 
 
 func get_possible_targets(bug: Bug, field: Field) -> Array:
-	var result = []
+	var result: Array = []
 	for tile in field.tiles:
-		if bug.position.distance_to(tile.position) < bug.attack_range:
+		if (
+			bug.position.distance_to(tile.position) < bug.attack_range
+			and bug.position != tile.position
+		):
 			result.append(tile)
 	return result
 

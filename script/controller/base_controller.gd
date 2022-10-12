@@ -5,8 +5,9 @@ extends Node
 signal turn_ended
 
 
-export (Team.Side) var team = Team.Side.RED setget , get_team
 export (NodePath) onready var _field = get_node(_field) as Field
+
+export (Team.Side) var team: int = Team.Side.RED setget , get_team
 
 
 func init(bug_team: int, field: Field) -> BaseController:

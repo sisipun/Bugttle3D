@@ -2,9 +2,9 @@ class_name MainCamera
 extends Camera
 
 
-export(float) var movement_speed = 20.0
-export(float) var mouse_sensitivity = 20.0
-export(float) var wheel_sensitivity = 50.0
+export(float) var movement_speed: float = 20.0
+export(float) var mouse_sensitivity: float = 20.0
+export(float) var wheel_sensitivity: float = 50.0
 
 var mouse_movement: Vector2 = Vector2.ZERO
 var pitch: float = 0
@@ -16,8 +16,8 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	var movement_direction = Vector2.ZERO
-	var zoom_direction = 0
+	var movement_direction: Vector2 = Vector2.ZERO
+	var zoom_direction: float = 0
 	
 	if Input.is_action_pressed("camera_rotation"):
 		pitch = fmod(pitch - mouse_movement.x * mouse_sensitivity * delta, 360)
@@ -39,10 +39,18 @@ func _process(delta: float) -> void:
 	if movement_direction != Vector2.ZERO:
 		movement_direction = movement_direction.normalized()
 	
-	var forward = Vector3(transform.basis.z.x, 0, transform.basis.z.z).normalized()
-	var right = Vector3(transform.basis.x.x, 0, transform.basis.x.z).normalized()
-	var relative_move_direction = (forward * movement_direction.y + right * movement_direction.x)
-	var relative_zoom_direction = transform.basis.z * zoom_direction
+	var forward: Vector3 = Vector3(
+		transform.basis.z.x, 
+		0, 
+		transform.basis.z.z
+	).normalized()
+	var right: Vector3 = Vector3(
+		transform.basis.x.x, 
+		0, 
+		transform.basis.x.z
+	).normalized()
+	var relative_move_direction: Vector3 = forward * movement_direction.y + right * movement_direction.x
+	var relative_zoom_direction: Vector3 = transform.basis.z * zoom_direction
 	
 	transform.origin += relative_move_direction * movement_speed * delta
 	transform.origin += relative_zoom_direction * wheel_sensitivity * delta

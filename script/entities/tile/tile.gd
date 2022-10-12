@@ -5,7 +5,8 @@ extends StaticBody
 signal pressed(tile)
 
 
-export (Material) var _clicked_material
+export (Material) var _clicked_material: Material = null
+export (Material) var _skill_material: Material = null
 
 var bug: Bug = null setget add_bug, get_bug
 var cost: int = 0 setget , get_cost
@@ -32,7 +33,7 @@ func init(
 		0, 
 		(y - (field_height - 1.0) / 2.0) * width()
 	)
-	self.set_unclicked()
+	self.set_default_material()
 	return self
 
 
@@ -84,11 +85,15 @@ func remove_bug() -> void:
 	bug = null
 
 
-func set_clicked() -> void:
+func set_clicked_material() -> void:
 	$Body.set_material_override(_clicked_material)
 
 
-func set_unclicked() -> void:
+func set_skill_material() -> void:
+	$Body.set_material_override(_skill_material)
+
+
+func set_default_material() -> void:
 	$Body.set_material_override(_material)
 
 

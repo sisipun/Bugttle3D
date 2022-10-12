@@ -7,6 +7,7 @@ export (PackedScene) var _bug_scene = _bug_scene as PackedScene
 
 export (int) var width: int = 0 setget , get_width
 export (int) var height: int = 0 setget , get_height
+
 var tiles: Array = [] setget , get_tiles
 
 

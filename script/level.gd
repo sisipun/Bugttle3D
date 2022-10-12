@@ -6,10 +6,9 @@ export (NodePath) onready var _field = get_node(_field) as Field
 export (NodePath) onready var _red_controller = get_node(_red_controller) as BaseController
 export (NodePath) onready var _blue_controller = get_node(_blue_controller) as BaseController
 
-export (int) var _field_size = 10
-export (Array, Resource) var _tile_types
-export (Array, Resource) var _bug_types
-export (int) var _bugs_count = 3
+export (Array, Resource) var _tile_types: Array = []
+export (Array, Resource) var _bug_types: Array = []
+export (int) var _bugs_count: int = 3
 
 var _team_to_controller: Dictionary = {}
 var _current_team: int = -1
@@ -18,7 +17,7 @@ var _current_controller: BaseController = null
 
 func _ready() -> void:
 	var tiles: Array = []
-	for _i in range(_field_size * _field_size):
+	for _i in range(_field.width * _field.height):
 		tiles.append(_tile_types[randi() % len(_tile_types)])
 	_field.init(tiles)
 	

@@ -44,8 +44,8 @@ _ui = NodePath("../../Ui")
 
 [node name="BlueController" type="Node" parent="Level"]
 script = ExtResource( 9 )
-team = 1
 _field = NodePath("../Field")
+team = 1
 _ui = NodePath("../../Ui")
 
 [node name="Ui" type="Control" parent="."]
