@@ -44,7 +44,6 @@ func _on_tile_pressed(tile: Tile) -> void:
 	
 	if (
 		_selected_bug.team == team 
-		and tile in _skill_possible_targets
 		and _selected_skill.execute(_selected_bug, tile, _field)
 	):
 		_select_tile(null)
