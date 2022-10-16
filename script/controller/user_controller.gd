@@ -5,6 +5,7 @@ extends BaseController
 export (NodePath) onready var _ui = get_node(_ui) as Ui
 
 
+var _hovered_tile: Tile = null
 var _selected_tile: Tile = null
 var _selected_bug: Bug = null
 var _selected_skill: Skill = null
@@ -14,6 +15,7 @@ var _skill_possible_targets: Array = []
 func before_turn() -> void:
 	for tile in _field.tiles:
 		assert(tile.connect("pressed", self, "_on_tile_pressed", [tile]) == OK)
+		assert(tile.connect("hovered", self, "_on_tile_hovered", [tile]) == OK)
 
 
 func process_turn(_delta: float) -> void:
@@ -49,6 +51,11 @@ func _on_tile_pressed(tile: Tile) -> void:
 		_select_tile(null)
 	else:
 		_select_tile(tile)
+
+
+func _on_tile_hovered(tile: Tile) -> void:
+	print("hover: (", tile.x, " - ", tile.y, ")")
+	pass
 
 
 func _select_tile(tile: Tile) -> void:

@@ -2,7 +2,8 @@ class_name Tile
 extends StaticBody
 
 
-signal pressed(tile)
+signal pressed
+signal hovered
 
 
 export (Material) var _clicked_material: Material = null
@@ -114,3 +115,6 @@ func _on_event(
 		and event.button_index == BUTTON_LEFT
 	):
 		emit_signal("pressed")
+	
+	if event is InputEventMouseMotion:
+		emit_signal("hovered")
