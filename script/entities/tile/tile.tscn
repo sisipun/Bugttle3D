@@ -1,26 +1,27 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://script/entities/tile/tile.gd" type="Script" id=1]
-[ext_resource path="res://asset/material/tile/tile.tres" type="Material" id=2]
-[ext_resource path="res://asset/material/tile/pressed_tile.tres" type="Material" id=3]
-
-[sub_resource type="SpatialMaterial" id=3]
-albedo_color = Color( 0.470588, 1, 0.396078, 1 )
 
 [sub_resource type="BoxShape" id=1]
 
 [sub_resource type="CubeMesh" id=2]
 
+[sub_resource type="SpatialMaterial" id=3]
+
 [node name="Tile" type="StaticBody"]
 script = ExtResource( 1 )
-_clicked_material = ExtResource( 3 )
-_skill_material = SubResource( 3 )
 
 [node name="Shape" type="CollisionShape" parent="."]
 shape = SubResource( 1 )
 
 [node name="Body" type="MeshInstance" parent="."]
 mesh = SubResource( 2 )
-material/0 = ExtResource( 2 )
+
+[node name="TopBody" type="MeshInstance" parent="Body"]
+transform = Transform( 1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 1, 0 )
+visible = false
+mesh = SubResource( 2 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 3 )
 
 [connection signal="input_event" from="." to="." method="_on_event"]

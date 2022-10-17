@@ -3,6 +3,9 @@ extends BaseController
 
 
 export (NodePath) onready var _ui = get_node(_ui) as Ui
+export (Material) var _pressed_tile_material: Material = null
+export (Material) var _skill_tile_material: Material = null
+export (Material) var _hovered_tile_material: Material = null
 
 
 var _hovered_tile: Tile = null
@@ -38,7 +41,7 @@ func after_turn() -> void:
 
 func _on_tile_pressed(tile: Tile) -> void:
 	if _selected_tile:
-		_selected_tile.set_default_material()
+		_selected_tile.set_body_default_material()
 	
 	if !_selected_tile or !_selected_bug or !_selected_skill:
 		_select_tile(tile)
@@ -54,18 +57,22 @@ func _on_tile_pressed(tile: Tile) -> void:
 
 
 func _on_tile_hovered(tile: Tile) -> void:
+	if _hovered_tile:
+		_hovered_tile.set_top_body_default_material()
+	
+	_hovered_tile = tile
+	_hovered_tile.set_top_body_material(_hovered_tile_material)
 	print("hover: (", tile.x, " - ", tile.y, ")")
-	pass
 
 
 func _select_tile(tile: Tile) -> void:
 	if _selected_tile:
-		_selected_tile.set_default_material()
+		_selected_tile.set_body_default_material()
 	
 	_selected_tile = tile
 	_select_bug(_selected_tile.bug if _selected_tile else null)
 	if _selected_tile:
-		_selected_tile.set_clicked_material()
+		_selected_tile.set_body_material(_pressed_tile_material)
 
 
 func _select_bug(bug: Bug) -> void:
@@ -76,7 +83,7 @@ func _select_bug(bug: Bug) -> void:
 func _select_skill(skill: Skill) -> void:
 	if _selected_skill:
 		for tile in _skill_possible_targets:
-			tile.set_default_material()
+			tile.set_body_default_material()
 		_skill_possible_targets = []
 		_ui.set_skill_icon(null)
 		_selected_skill = null
@@ -85,5 +92,5 @@ func _select_skill(skill: Skill) -> void:
 	if _selected_skill:
 		_skill_possible_targets = _selected_skill.get_possible_targets(_selected_bug, _field)
 		for tile in _skill_possible_targets:
-			tile.set_skill_material()
+			tile.set_body_material(_skill_tile_material)
 		_ui.set_skill_icon(_selected_skill.icon)

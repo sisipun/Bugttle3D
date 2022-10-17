@@ -6,9 +6,6 @@ signal pressed
 signal hovered
 
 
-export (Material) var _clicked_material: Material = null
-export (Material) var _skill_material: Material = null
-
 var bug: Bug = null setget add_bug, get_bug
 var cost: int = 0 setget , get_cost
 var x: int = 0 setget, get_x
@@ -34,7 +31,8 @@ func init(
 		0, 
 		(y - (field_height - 1.0) / 2.0) * width()
 	)
-	self.set_default_material()
+	self.set_body_default_material()
+	self.set_top_body_default_material()
 	return self
 
 
@@ -86,16 +84,21 @@ func remove_bug() -> void:
 	bug = null
 
 
-func set_clicked_material() -> void:
-	$Body.set_material_override(_clicked_material)
+func set_body_material(material: Material) -> void:
+	$Body.set_material_override(material)
 
 
-func set_skill_material() -> void:
-	$Body.set_material_override(_skill_material)
-
-
-func set_default_material() -> void:
+func set_body_default_material() -> void:
 	$Body.set_material_override(_material)
+
+
+func set_top_body_material(material: Material) -> void:
+	$Body/TopBody.visible = true
+	$Body/TopBody.set_material_override(material)
+
+
+func set_top_body_default_material() -> void:
+	$Body/TopBody.visible = false
 
 
 func _on_bug_dead() -> void:
