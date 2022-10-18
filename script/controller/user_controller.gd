@@ -15,13 +15,13 @@ var _selected_skill: Skill = null
 var _skill_possible_targets: Array = []
 
 
-func before_turn() -> void:
+func _before_turn() -> void:
 	for tile in _field.tiles:
 		assert(tile.connect("pressed", self, "_on_tile_pressed", [tile]) == OK)
 		assert(tile.connect("hovered", self, "_on_tile_hovered", [tile]) == OK)
 
 
-func process_turn(_delta: float) -> void:
+func _process_turn(_delta: float) -> void:
 	if Input.is_action_just_pressed("controller_cancel"):
 		_select_tile(null)
 	if Input.is_action_just_pressed("controller_end_turn"):
@@ -34,9 +34,11 @@ func process_turn(_delta: float) -> void:
 		
 
 
-func after_turn() -> void:
+func _after_turn() -> void:
+	_select_tile(null)
 	for tile in _field.tiles:
 		tile.disconnect("pressed", self, "_on_tile_pressed")
+		tile.disconnect("hovered", self, "_on_tile_hovered")
 
 
 func _on_tile_pressed(tile: Tile) -> void:
@@ -62,7 +64,6 @@ func _on_tile_hovered(tile: Tile) -> void:
 	
 	_hovered_tile = tile
 	_hovered_tile.set_top_body_material(_hovered_tile_material)
-	print("hover: (", tile.x, " - ", tile.y, ")")
 
 
 func _select_tile(tile: Tile) -> void:
