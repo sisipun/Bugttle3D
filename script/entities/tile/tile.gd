@@ -6,24 +6,24 @@ signal pressed
 signal hovered
 
 
-var bug: Bug = null setget add_bug, get_bug
+var bug: Bug = null setget set_bug, get_bug
 var cost: int = 0 setget , get_cost
-var x: int = 0 setget, get_x
-var y: int = 0 setget, get_y
+var x: int = 0 setget , get_x
+var y: int = 0 setget , get_y
 var position: Vector2 setget , get_position
 
 var _material: Material = null
 
 
 func init(
-	new_x: int,
-	new_y: int, 
+	_x: int,
+	_y: int, 
 	field_width: int, 
 	field_height: int,
 	type: TileType
 ) -> Tile:
-	self.x = new_x
-	self.y = new_y
+	self.x = _x
+	self.y = _y
 	self.cost = type.cost
 	self._material = type.material
 	self.transform.origin = Vector3(
@@ -72,11 +72,11 @@ func has_bug() -> bool:
 	return bug != null
 
 
-func add_bug(new_bug: Bug) -> void:
-	bug = new_bug
+func set_bug(_bug: Bug) -> void:
+	bug = _bug
 	bug.transform.origin = transform.origin + Vector3(0, height() / 2, 0)
 	assert(bug.connect("dead", self, "_on_bug_dead") == OK)
-	bug.move_to(x, y)
+	bug.set_position(x, y)
 
 
 func remove_bug() -> void:

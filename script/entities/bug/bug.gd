@@ -27,10 +27,10 @@ func _ready() -> void:
 	self.attack_range = self.max_attack_range
 
 
-func init(new_x: int, new_y: int, bug_team: int, type: BugType) -> Bug:
-	self.team = bug_team
-	self.x = new_x
-	self.y = new_y
+func init(_x: int, _y: int, bug_team: int, type: BugType) -> Bug:
+	self.x = _x
+	self.y = _y
+	self.team = bug_team	
 	self.max_health = type.health
 	self.health = type.health
 	self.max_move_range = type.move_range
@@ -60,27 +60,29 @@ func get_x() -> int:
 	return x
 
 
-func set_x(new_x: int) -> void:
-	x = new_x
+func set_x(_x: int) -> void:
+	x = _x
 
 
 func get_y() -> int:
 	return y
 
 
-func set_y(new_y: int) -> void:
-	y = new_y
+func set_y(_y: int) -> void:
+	y = _y
 
 
 func get_position() -> Vector2:
 	return Vector2(x, y)
 
 
-func move_to(new_x: int, new_y: int) -> void:
-# warning-ignore:narrowing_conversion
-	move_range -= abs(new_x - x) + abs(new_y - y)
-	x = new_x
-	y = new_y
+func set_position(_x: int, _y: int) -> void:
+	x = _x
+	y = _y
+
+
+func move(path_info: PathInfo) -> void:
+	move_range -= path_info.cost
 
 
 func get_max_health() -> int:

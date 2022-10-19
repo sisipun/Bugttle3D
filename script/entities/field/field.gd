@@ -31,6 +31,10 @@ func get_tiles() -> Array:
 	return tiles
 
 
+func get_tile(position: Vector2) -> Tile:
+	return tiles[position.x * height + position.y]
+
+
 func get_bug_tile(bug: Bug) -> Tile:
 	return tiles[bug.get_x() * height + bug.get_y()]
 
@@ -40,6 +44,14 @@ func add_bug(x: int, y: int, team: int, type: BugType) -> void:
 	add_child(bug)
 	assert(bug.connect("dead", self, "_on_bug_dead", [bug]) == OK)
 	tiles[x * height + y].bug = bug.init(x, y, team, type)
+
+
+func move_bug(bug: Bug, path_info: PathInfo) -> void:
+	var path: Array = path_info.path
+	if len(path) > 1:
+		get_tile(path[0]).remove_bug()
+		get_tile(path[-1]).set_bug(bug)
+		bug.move(path_info)
 
 
 func _add_tile(x: int, y: int, type: TileType):

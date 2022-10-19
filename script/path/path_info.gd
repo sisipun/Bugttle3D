@@ -2,12 +2,10 @@ class_name PathInfo
 extends Node
 
 
-var value: Array = [] setget , get_value
+var path: Array
+var cost: int
 
 
-func _init(path: Array):
-	self.value = path
-
-
-func get_value() -> Array:
-	return value
+func _init(_path: Array, _cost: int):
+	self.path = _path
+	self.cost = _cost
