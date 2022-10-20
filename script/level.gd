@@ -56,7 +56,7 @@ func start_turn(team: int) -> void:
 
 func end_turn() -> void:
 	_current_controller.after_turn()
-	_current_controller.disconnect("turn_ended", self, "_on_turn_ended")	
+	_current_controller.disconnect("turn_ended", self, "_on_turn_ended")
 	start_turn(1 - _current_team)
 
 
