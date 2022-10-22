@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://script/main_camera.gd" type="Script" id=1]
 [ext_resource path="res://script/level.gd" type="Script" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://asset/material/tile/skill_tile.tres" type="Material" id=12]
 [ext_resource path="res://asset/material/tile/hovered_tile.tres" type="Material" id=13]
 [ext_resource path="res://asset/material/tile/pressed_tile.tres" type="Material" id=14]
+[ext_resource path="res://script/ui/bug_info.tscn" type="PackedScene" id=15]
 
 [node name="Game" type="Node"]
 
@@ -58,10 +59,15 @@ _skill_tile_material = ExtResource( 12 )
 _hovered_tile_material = ExtResource( 13 )
 
 [node name="Ui" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
 script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 _skill_icon = NodePath("SkillIcon")
+_bug_info = NodePath("BugInfo")
 
 [node name="SkillIcon" type="TextureRect" parent="Ui"]
 margin_left = 50.0
@@ -69,3 +75,8 @@ margin_top = 50.0
 margin_right = 100.0
 margin_bottom = 100.0
 expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BugInfo" parent="Ui" instance=ExtResource( 15 )]

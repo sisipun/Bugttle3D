@@ -78,6 +78,7 @@ func _select_tile(tile: Tile) -> void:
 
 func _select_bug(bug: Bug) -> void:
 	_selected_bug = bug
+	_ui.show_bug(bug)
 	_select_skill(_selected_bug.skills[0] if _selected_bug and _selected_bug.team == team else null)
 
 
