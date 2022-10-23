@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "BaseController",
+"class": "AIController",
+"language": "GDScript",
+"path": "res://script/controller/ai_controller.gd"
+}, {
 "base": "Skill",
 "class": "AttackSkill",
 "language": "GDScript",
@@ -95,6 +100,7 @@ _global_script_classes=[ {
 "path": "res://script/controller/user_controller.gd"
 } ]
 _global_script_class_icons={
+"AIController": "",
 "AttackSkill": "",
 "BaseController": "",
 "Bug": "",

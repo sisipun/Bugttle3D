@@ -8,7 +8,9 @@ func get_possible_targets(bug: Bug, field: Field) -> Array:
 		var direction = bug.position - tile.position
 		var distance = abs(direction.x) + abs(direction.y)
 		if (
-			distance <= bug.attack_range
+			tile.has_bug()
+			and tile.bug.team != bug.team
+			and distance <= bug.attack_range
 			and bug.position != tile.position
 		):
 			result.append(tile)
@@ -16,13 +18,8 @@ func get_possible_targets(bug: Bug, field: Field) -> Array:
 
 
 func execute(bug: Bug, target: Tile, field: Field) -> bool:
-	var target_bug: Bug = target.bug
-	if (
-		not (target in get_possible_targets(bug, field))
-		or !target_bug 
-		or target_bug.team == bug.team
-	):
+	if not (target in get_possible_targets(bug, field)):
 		return false
 	
-	bug.attack(target_bug)
+	bug.attack(target.bug)
 	return true

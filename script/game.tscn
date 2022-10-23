@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://script/main_camera.gd" type="Script" id=1]
 [ext_resource path="res://script/level.gd" type="Script" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://asset/material/tile/hovered_tile.tres" type="Material" id=13]
 [ext_resource path="res://asset/material/tile/pressed_tile.tres" type="Material" id=14]
 [ext_resource path="res://script/ui/bug_info.tscn" type="PackedScene" id=15]
+[ext_resource path="res://script/controller/ai_controller.gd" type="Script" id=16]
 
 [node name="Game" type="Node"]
 
@@ -50,13 +51,9 @@ _skill_tile_material = ExtResource( 12 )
 _hovered_tile_material = ExtResource( 13 )
 
 [node name="BlueController" type="Node" parent="Level"]
-script = ExtResource( 9 )
+script = ExtResource( 16 )
 _field = NodePath("../Field")
 team = 1
-_ui = NodePath("../../Ui")
-_pressed_tile_material = ExtResource( 14 )
-_skill_tile_material = ExtResource( 12 )
-_hovered_tile_material = ExtResource( 13 )
 
 [node name="Ui" type="Control" parent="."]
 anchor_right = 1.0
