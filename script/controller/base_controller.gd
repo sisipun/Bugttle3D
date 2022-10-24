@@ -8,7 +8,7 @@ signal turn_ended
 
 export (NodePath) onready var _field = get_node(_field) as Field
 
-export (Team.Side) var team: int = Team.Side.RED setget , get_team
+export (Team.Side) var team: int = Team.Side.RED
 
 
 func before_turn() -> void:
@@ -41,7 +41,3 @@ func _process_turn(_delta: float) -> void:
 
 func _after_turn() -> void:
 	pass
-
-
-func get_team() -> int:
-	return team

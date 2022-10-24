@@ -19,7 +19,7 @@ func _before_turn() -> void:
 		if (
 			tile.has_bug() 
 			and tile.bug.team == team
-			and not tile.bug.is_dead()
+			and not tile.bug.dead
 		):
 			_bugs.append(tile.bug)
 	_turn()

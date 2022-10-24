@@ -5,19 +5,19 @@ extends KinematicBody
 signal dead(bug)
 
 
-var team: int = -1 setget , get_team
-var x: int = -1 setget set_x, get_x
-var y: int = -1 setget set_y, get_y
-var position: Vector2 = Vector2.ZERO setget , get_position
-var max_health: int = 0 setget , get_max_health
-var health: int = 0 setget , get_health
-var max_move_range: int = 0 setget , get_max_move_range
-var move_range: int = 0 setget , get_move_range
-var max_attack_range: int = 0 setget , get_max_attack_range
-var attack_range: int = 0 setget , get_attack_range
-var attack_power: int = 0 setget , get_attack_power
-var skills: Array = [] setget , get_skills
-var dead: bool = false setget , is_dead
+var team: int = -1
+var x: int = -1
+var y: int = -1
+var position: Vector2 = Vector2.ZERO setget set_position, get_position
+var max_health: int = 0
+var health: int = 0
+var max_move_range: int = 0
+var move_range: int = 0
+var max_attack_range: int = 0
+var attack_range: int = 0
+var attack_power: int = 0
+var skills: Array = []
+var dead: bool = false
 
 
 func _ready() -> void:
@@ -56,73 +56,22 @@ func after_turn() -> void:
 	pass
 
 
-func get_x() -> int:
-	return x
-
-
-func set_x(_x: int) -> void:
-	x = _x
-
-
-func get_y() -> int:
-	return y
-
-
-func set_y(_y: int) -> void:
-	y = _y
-
-
 func get_position() -> Vector2:
 	return Vector2(x, y)
 
 
-func set_position(_x: int, _y: int) -> void:
+func set_position(_position: Vector2) -> void:
+	x = int(_position.x)
+	y = int(_position.y)
+
+
+func set_position_distruct(_x: int, _y: int) -> void:
 	x = _x
 	y = _y
 
 
 func move(path_info: PathInfo) -> void:
 	move_range -= path_info.cost
-
-
-func get_max_health() -> int:
-	return max_health
-
-
-func get_health() -> int:
-	return health
-
-
-func get_max_move_range() -> int:
-	return max_move_range
-
-
-func get_move_range() -> int:
-	return move_range
-
-
-func get_max_attack_range() -> int:
-	return max_attack_range
-
-
-func get_attack_range() -> int:
-	return attack_range
-
-
-func get_attack_power() -> int:
-	return attack_power
-
-
-func get_team() -> int:
-	return team
-
-
-func is_dead() -> bool:
-	return dead
-
-
-func get_skills() -> Array:
-	return skills
 
 
 func attack(bug: Bug) -> void:

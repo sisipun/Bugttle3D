@@ -6,11 +6,11 @@ signal pressed
 signal hovered
 
 
-var bug: Bug = null setget set_bug, get_bug
-var cost: int = 0 setget , get_cost
-var x: int = 0 setget , get_x
-var y: int = 0 setget , get_y
-var position: Vector2 setget , get_position
+var bug: Bug = null setget set_bug
+var cost: int = 0
+var x: int = 0
+var y: int = 0
+var position: Vector2 setget set_position, get_position
 
 var _material: Material = null
 
@@ -48,24 +48,13 @@ func height() -> float:
 	return $Shape.shape.extents.z * 2
 
 
-func get_x() -> int:
-	return x
-
-
-func get_y() -> int:
-	return y
+func set_position(_position: Vector2) -> void:
+	x = int(_position.x)
+	y = int(_position.y)
 
 
 func get_position() -> Vector2:
 	return Vector2(x, y)
-
-
-func get_cost() -> int:
-	return cost
-
-
-func get_bug() -> Bug:
-	return bug
 
 
 func has_bug() -> bool:
@@ -76,7 +65,7 @@ func set_bug(_bug: Bug) -> void:
 	bug = _bug
 	bug.transform.origin = transform.origin + Vector3(0, height() / 2, 0)
 	assert(bug.connect("dead", self, "_on_bug_dead") == OK)
-	bug.set_position(x, y)
+	bug.set_position_distruct(x, y)
 
 
 func remove_bug() -> void:
