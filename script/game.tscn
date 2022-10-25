@@ -1,12 +1,12 @@
 [gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://script/main_camera.gd" type="Script" id=1]
-[ext_resource path="res://script/level.gd" type="Script" id=2]
+[ext_resource path="res://script/entities/level/kill_all_level.gd" type="Script" id=2]
 [ext_resource path="res://script/ui/ui.gd" type="Script" id=3]
 [ext_resource path="res://script/type/bug/warrior.tres" type="Resource" id=4]
-[ext_resource path="res://script/type/tile/sand.tres" type="Resource" id=5]
+[ext_resource path="res://script/type/field/biome/grass.tres" type="Resource" id=5]
 [ext_resource path="res://script/type/bug/archer.tres" type="Resource" id=6]
-[ext_resource path="res://script/type/tile/ground.tres" type="Resource" id=7]
+[ext_resource path="res://script/game.gd" type="Script" id=7]
 [ext_resource path="res://script/entities/field/field.gd" type="Script" id=8]
 [ext_resource path="res://script/controller/user_controller.gd" type="Script" id=9]
 [ext_resource path="res://script/entities/bug/bug.tscn" type="PackedScene" id=10]
@@ -18,13 +18,14 @@
 [ext_resource path="res://script/controller/ai_controller.gd" type="Script" id=16]
 
 [node name="Game" type="Node"]
+script = ExtResource( 7 )
+_level = NodePath("Level")
 
-[node name="Level" type="Spatial" parent="."]
+[node name="Level" type="Node" parent="."]
 script = ExtResource( 2 )
 _field = NodePath("Field")
 _red_controller = NodePath("RedController")
 _blue_controller = NodePath("BlueController")
-_tile_types = [ ExtResource( 7 ), ExtResource( 5 ) ]
 _bug_types = [ ExtResource( 6 ), ExtResource( 4 ) ]
 
 [node name="DirectionalLight" type="DirectionalLight" parent="Level"]
@@ -39,6 +40,7 @@ script = ExtResource( 1 )
 script = ExtResource( 8 )
 _tile_scene = ExtResource( 11 )
 _bug_scene = ExtResource( 10 )
+_biome = ExtResource( 5 )
 width = 10
 height = 10
 

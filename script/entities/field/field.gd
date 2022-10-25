@@ -5,18 +5,20 @@ extends Node
 export (PackedScene) var _tile_scene = _tile_scene as PackedScene
 export (PackedScene) var _bug_scene = _bug_scene as PackedScene
 
+export (Resource) var _biome = _biome as FieldBiomeType
+
 export (int) var width: int = 0
 export (int) var height: int = 0
 
 var tiles: Array = []
-var bugs: Array = []
 
 
-func init(tile_types: Array) -> Field:
+func init() -> Field:
+	self.tiles.clear()
 	self.tiles.resize(width * height)
 	for x in range(width):
 		for y in range(height):
-			_add_tile(x, y, tile_types[x * height + y])
+			_add_tile(x, y, _biome.tile_types[randi() % len(_biome.tile_types)])
 	return self
 
 
