@@ -30,3 +30,9 @@ func _init_bugs() -> void:
 			Team.Side.BLUE, 
 			_bug_types[randi() % len(_bug_types)]
 		)
+
+
+func _check_state() -> void:
+	for team in _field.team_bugs:
+		if _field.team_bugs[team] == []:
+			emit_signal("level_finished", 1 - team)

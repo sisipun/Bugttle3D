@@ -35,6 +35,7 @@ func _process_turn(_delta: float) -> void:
 
 
 func _after_turn() -> void:
+	_hover_tile(null)
 	_select_tile(null)
 	for tile in _field.tiles:
 		tile.disconnect("pressed", self, "_on_tile_pressed")
@@ -59,11 +60,16 @@ func _on_tile_pressed(tile: Tile) -> void:
 
 
 func _on_tile_hovered(tile: Tile) -> void:
+	_hover_tile(tile)
+
+
+func _hover_tile(tile: Tile) -> void:
 	if _hovered_tile:
 		_hovered_tile.set_top_body_default_material()
 	
 	_hovered_tile = tile
-	_hovered_tile.set_top_body_material(_hovered_tile_material)
+	if _hovered_tile:
+		_hovered_tile.set_top_body_material(_hovered_tile_material)
 
 
 func _select_tile(tile: Tile) -> void:
