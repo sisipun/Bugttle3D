@@ -26,7 +26,7 @@ func _init_bugs() -> void:
 	for i in _init_bugs_count:
 		_field.add_bug(
 			_field.width - 1 - int(i / _field.width), 
-			i % _field.height, 
+			_field.height - 1 - i % _field.height, 
 			Team.Side.BLUE, 
 			_bug_types[randi() % len(_bug_types)]
 		)

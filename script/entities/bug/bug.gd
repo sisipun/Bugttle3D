@@ -30,7 +30,7 @@ func _ready() -> void:
 func init(_x: int, _y: int, bug_team: int, type: BugType) -> Bug:
 	self.x = _x
 	self.y = _y
-	self.team = bug_team	
+	self.team = bug_team
 	self.max_health = type.health
 	self.health = type.health
 	self.max_move_range = type.move_range
