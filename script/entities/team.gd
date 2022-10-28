@@ -6,3 +6,9 @@ enum Side {
 	RED,
 	BLUE
 }
+
+
+const names: Dictionary = {
+	Side.RED: "Red",
+	Side.BLUE: "Blue"
+}
