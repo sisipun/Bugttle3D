@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://script/main_camera.gd" type="Script" id=1]
 [ext_resource path="res://script/entities/level/kill_all_level.gd" type="Script" id=2]
@@ -11,7 +11,6 @@
 [ext_resource path="res://script/controller/user_controller.gd" type="Script" id=9]
 [ext_resource path="res://script/entities/bug/bug.tscn" type="PackedScene" id=10]
 [ext_resource path="res://script/entities/tile/tile.tscn" type="PackedScene" id=11]
-[ext_resource path="res://asset/material/tile/skill_tile.tres" type="Material" id=12]
 [ext_resource path="res://asset/material/tile/hovered_tile.tres" type="Material" id=13]
 [ext_resource path="res://asset/material/tile/pressed_tile.tres" type="Material" id=14]
 [ext_resource path="res://script/ui/bug_info.tscn" type="PackedScene" id=15]
@@ -51,7 +50,6 @@ script = ExtResource( 9 )
 _field = NodePath("../Field")
 _ui = NodePath("../../Ui")
 _pressed_tile_material = ExtResource( 14 )
-_skill_tile_material = ExtResource( 12 )
 _hovered_tile_material = ExtResource( 13 )
 
 [node name="BlueController" type="Node" parent="Level"]

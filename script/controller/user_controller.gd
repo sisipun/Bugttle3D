@@ -3,9 +3,8 @@ extends BaseController
 
 
 export (NodePath) onready var _ui = get_node(_ui) as Ui
-export (Material) var _pressed_tile_material: Material = null
-export (Material) var _skill_tile_material: Material = null
-export (Material) var _hovered_tile_material: Material = null
+export (SpatialMaterial) var _pressed_tile_material: Material = null
+export (SpatialMaterial) var _hovered_tile_material: Material = null
 
 
 var _hovered_tile: Tile = null
@@ -100,5 +99,5 @@ func _select_skill(skill: Skill) -> void:
 	if _selected_skill:
 		_skill_possible_targets = _selected_skill.get_possible_targets(_selected_bug, _field)
 		for tile in _skill_possible_targets:
-			tile.set_body_material(_skill_tile_material)
+			tile.set_body_material(skill.target_tile_material)
 		_ui.set_skill_icon(_selected_skill.icon)

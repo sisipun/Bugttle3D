@@ -28,3 +28,7 @@ func execute(bug: Bug, target: Tile, field: Field) -> bool:
 	)
 	field.move_bug(bug, path_info)
 	return true
+
+
+func show_possible_targets(_field: Field) -> void:
+	pass
