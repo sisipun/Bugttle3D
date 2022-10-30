@@ -30,7 +30,7 @@ func _turn() -> void:
 	yield(_timer, "timeout")
 	for bug in _bugs:
 		for skill in bug.skills:
-			var possible_targets = skill.get_possible_targets(bug, _field)
+			var possible_targets = skill.get_targets(bug, _field)
 			if possible_targets != []:
 				skill.execute(
 					bug, 

@@ -74,7 +74,10 @@ func remove_bug() -> void:
 
 
 func set_body_material(material: Material) -> void:
-	$Body.set_material_override(material)
+	if material:
+		$Body.set_material_override(material)
+	else:
+		set_body_default_material()
 
 
 func set_body_default_material() -> void:
@@ -82,8 +85,11 @@ func set_body_default_material() -> void:
 
 
 func set_top_body_material(material: Material) -> void:
-	$Body/TopBody.visible = true
-	$Body/TopBody.set_material_override(material)
+	if material:
+		$Body/TopBody.visible = true
+		$Body/TopBody.set_material_override(material)
+	else:
+		set_top_body_default_material()
 
 
 func set_top_body_default_material() -> void:

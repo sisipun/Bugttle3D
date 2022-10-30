@@ -10,8 +10,9 @@ export (SpatialMaterial) var _hovered_tile_material: Material = null
 var _hovered_tile: Tile = null
 var _selected_tile: Tile = null
 var _selected_bug: Bug = null
-var _selected_skill: Skill = null
-var _skill_possible_targets: Array = []
+var _selected_skill: BaseSkill = null
+var _skill_area: Array = []
+var _skill_targets: Array = []
 
 
 func _before_turn() -> void:
@@ -87,17 +88,23 @@ func _select_bug(bug: Bug) -> void:
 	_select_skill(_selected_bug.skills[0] if _selected_bug and _selected_bug.team == team else null)
 
 
-func _select_skill(skill: Skill) -> void:
+func _select_skill(skill: BaseSkill) -> void:
 	if _selected_skill:
-		for tile in _skill_possible_targets:
+		for tile in _skill_area:
 			tile.set_body_default_material()
-		_skill_possible_targets = []
+		for tile in _skill_targets:
+			tile.set_body_default_material()
+		_skill_area = []
+		_skill_targets = []
 		_ui.set_skill_icon(null)
 		_selected_skill = null
 	
 	_selected_skill = skill
 	if _selected_skill:
-		_skill_possible_targets = _selected_skill.get_possible_targets(_selected_bug, _field)
-		for tile in _skill_possible_targets:
-			tile.set_body_material(skill.target_tile_material)
+		_skill_area = _selected_skill.get_area(_selected_bug, _field)
+		_skill_targets = _selected_skill.get_targets(_selected_bug, _field)
+		for tile in _skill_area:
+			tile.set_body_material(skill.area_material)
+		for tile in _skill_targets:
+			tile.set_body_material(skill.target_material)
 		_ui.set_skill_icon(_selected_skill.icon)

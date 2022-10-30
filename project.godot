@@ -14,7 +14,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://script/controller/ai_controller.gd"
 }, {
-"base": "Skill",
+"base": "BaseSkill",
 "class": "AttackSkill",
 "language": "GDScript",
 "path": "res://script/skill/attack_skill.gd"
@@ -28,6 +28,11 @@ _global_script_classes=[ {
 "class": "BaseLevel",
 "language": "GDScript",
 "path": "res://script/entities/level/base_level.gd"
+}, {
+"base": "Resource",
+"class": "BaseSkill",
+"language": "GDScript",
+"path": "res://script/skill/base_skill.gd"
 }, {
 "base": "KinematicBody",
 "class": "Bug",
@@ -69,7 +74,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://script/main_camera.gd"
 }, {
-"base": "Skill",
+"base": "BaseSkill",
 "class": "MovementSkill",
 "language": "GDScript",
 "path": "res://script/skill/movement_skill.gd"
@@ -83,11 +88,6 @@ _global_script_classes=[ {
 "class": "PathInfo",
 "language": "GDScript",
 "path": "res://script/path/path_info.gd"
-}, {
-"base": "Resource",
-"class": "Skill",
-"language": "GDScript",
-"path": "res://script/skill/skill.gd"
 }, {
 "base": "Node",
 "class": "Team",
@@ -119,6 +119,7 @@ _global_script_class_icons={
 "AttackSkill": "",
 "BaseController": "",
 "BaseLevel": "",
+"BaseSkill": "",
 "Bug": "",
 "BugInfo": "",
 "BugType": "",
@@ -130,7 +131,6 @@ _global_script_class_icons={
 "MovementSkill": "",
 "PathFinder": "",
 "PathInfo": "",
-"Skill": "",
 "Team": "",
 "Tile": "",
 "TileType": "",
