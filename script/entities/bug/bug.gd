@@ -6,6 +6,7 @@ signal dead(bug)
 
 
 var team: int = -1
+var type: BugType = null
 var x: int = -1
 var y: int = -1
 var position: Vector2 = Vector2.ZERO setget set_position, get_position
@@ -22,20 +23,15 @@ var dead: bool = false
 
 func _ready() -> void:
 	self.dead = false
-	self.health = self.max_health
-	self.move_range = self.max_move_range
-	self.attack_range = self.max_attack_range
 
 
-func init(_x: int, _y: int, bug_team: int, type: BugType) -> Bug:
+func init(_x: int, _y: int, bug_team: int, _type: BugType) -> Bug:
 	self.x = _x
 	self.y = _y
 	self.team = bug_team
-	self.max_health = type.health
+	self.type = _type
 	self.health = type.health
-	self.max_move_range = type.move_range
 	self.move_range = type.move_range
-	self.max_attack_range = type.attack_range
 	self.attack_range = type.attack_range
 	self.attack_power = type.attack_power
 	self.skills = type.skills
@@ -48,8 +44,8 @@ func init(_x: int, _y: int, bug_team: int, type: BugType) -> Bug:
 
 
 func before_turn() -> void:
-	self.move_range = self.max_move_range
-	self.attack_range = self.max_attack_range
+	self.move_range = self.type.move_range
+	self.attack_range = self.type.attack_range
 
 
 func after_turn() -> void:

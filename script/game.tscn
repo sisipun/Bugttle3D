@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://script/main_camera.gd" type="Script" id=1]
 [ext_resource path="res://script/entities/level/kill_all_level.gd" type="Script" id=2]
@@ -11,10 +11,13 @@
 [ext_resource path="res://script/controller/user_controller.gd" type="Script" id=9]
 [ext_resource path="res://script/entities/bug/bug.tscn" type="PackedScene" id=10]
 [ext_resource path="res://script/entities/tile/tile.tscn" type="PackedScene" id=11]
+[ext_resource path="res://script/ui/tile_info.tscn" type="PackedScene" id=12]
 [ext_resource path="res://asset/material/tile/hovered_tile.tres" type="Material" id=13]
-[ext_resource path="res://asset/material/tile/pressed_tile.tres" type="Material" id=14]
 [ext_resource path="res://script/ui/bug_info.tscn" type="PackedScene" id=15]
 [ext_resource path="res://script/controller/ai_controller.gd" type="Script" id=16]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0.592157, 0, 1, 1 )
 
 [node name="Game" type="Node"]
 script = ExtResource( 7 )
@@ -49,7 +52,7 @@ height = 8
 script = ExtResource( 9 )
 _field = NodePath("../Field")
 _ui = NodePath("../../Ui")
-_pressed_tile_material = ExtResource( 14 )
+_pressed_tile_material = SubResource( 1 )
 _hovered_tile_material = ExtResource( 13 )
 
 [node name="BlueController" type="Node" parent="Level"]
@@ -62,11 +65,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 _skill_icon = NodePath("SkillIcon")
 _bug_info = NodePath("BugInfo")
+_tile_info = NodePath("TileInfo")
 
 [node name="SkillIcon" type="TextureRect" parent="Ui"]
 margin_left = 50.0
@@ -79,3 +80,19 @@ __meta__ = {
 }
 
 [node name="BugInfo" parent="Ui" instance=ExtResource( 15 )]
+visible = false
+anchor_left = 1.0
+anchor_top = 1.0
+margin_left = -150.0
+margin_top = -200.0
+margin_right = -50.0
+margin_bottom = -50.0
+
+[node name="TileInfo" parent="Ui" instance=ExtResource( 12 )]
+visible = false
+anchor_top = 1.0
+anchor_right = 0.0
+margin_left = 50.0
+margin_top = -200.0
+margin_right = 150.0
+margin_bottom = -50.0

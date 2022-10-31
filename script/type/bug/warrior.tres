@@ -7,6 +7,7 @@
 
 [resource]
 script = ExtResource( 1 )
+name = "Warrior"
 health = 3
 move_range = 5
 attack_range = 1

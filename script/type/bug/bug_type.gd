@@ -2,6 +2,7 @@ class_name BugType
 extends Resource
 
 
+export(String) var name = ""
 export(int) var health = 3
 export(int) var move_range = 4
 export(int) var attack_range = 1

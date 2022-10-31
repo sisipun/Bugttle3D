@@ -2,20 +2,9 @@ class_name MovementSkill
 extends BaseSkill
 
 
-func get_area(bug: Bug, field: Field) -> Array:
-	var area: Array = []
-	for tile in field.tiles:
-		var direction = bug.position - tile.position
-		var distance = abs(direction.x) + abs(direction.y)
-		if distance <= bug.move_range and bug.position != tile.position:
-			area.append(tile)
-	return area
-
-
 func get_targets(bug: Bug, field: Field) -> Array:
 	var targets: Array = []
-	var area: Array = get_area(bug, field)
-	for tile in area:
+	for tile in field.tiles:
 		var path_info: PathInfo = PathFinder.find_path(
 			bug.position, 
 			tile.position, 
@@ -39,7 +28,3 @@ func execute(bug: Bug, target: Tile, field: Field) -> bool:
 	)
 	field.move_bug(bug, path_info)
 	return true
-
-
-func show_possible_targets(_field: Field) -> void:
-	pass

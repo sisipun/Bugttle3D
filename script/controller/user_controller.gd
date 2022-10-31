@@ -77,6 +77,7 @@ func _select_tile(tile: Tile) -> void:
 		_selected_tile.set_body_default_material()
 	
 	_selected_tile = tile
+	_ui.show_tile(_selected_tile)
 	_select_bug(_selected_tile.bug if _selected_tile else null)
 	if _selected_tile:
 		_selected_tile.set_body_material(_pressed_tile_material)
@@ -84,7 +85,7 @@ func _select_tile(tile: Tile) -> void:
 
 func _select_bug(bug: Bug) -> void:
 	_selected_bug = bug
-	_ui.show_bug(bug)
+	_ui.show_bug(_selected_bug)
 	_select_skill(_selected_bug.skills[0] if _selected_bug and _selected_bug.team == team else null)
 
 

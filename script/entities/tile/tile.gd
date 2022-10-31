@@ -6,13 +6,12 @@ signal pressed
 signal hovered
 
 
-var bug: Bug = null setget set_bug
-var cost: int = 0
+var type: TileType = null
 var x: int = 0
 var y: int = 0
 var position: Vector2 setget set_position, get_position
-
-var _material: Material = null
+var cost: int = 0
+var bug: Bug = null setget set_bug
 
 
 func init(
@@ -20,12 +19,12 @@ func init(
 	_y: int, 
 	field_width: int, 
 	field_height: int,
-	type: TileType
+	_type: TileType
 ) -> Tile:
+	self.type = _type
 	self.x = _x
 	self.y = _y
 	self.cost = type.cost
-	self._material = type.material
 	self.transform.origin = Vector3(
 		(x - (field_width - 1.0) / 2.0) * length(), 
 		0, 
@@ -81,7 +80,7 @@ func set_body_material(material: Material) -> void:
 
 
 func set_body_default_material() -> void:
-	$Body.set_material_override(_material)
+	$Body.set_material_override(type.material)
 
 
 func set_top_body_material(material: Material) -> void:

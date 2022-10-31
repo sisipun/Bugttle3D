@@ -7,5 +7,6 @@ albedo_color = Color( 1, 0.74902, 0, 1 )
 
 [resource]
 script = ExtResource( 1 )
+name = "Sand"
 cost = 2
 material = SubResource( 1 )
