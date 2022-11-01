@@ -11,6 +11,7 @@ name = "Archer"
 health = 2
 move_range = 4
 attack_range = 3
+attack_count = 2
 attack_power = 1
 mesh = ExtResource( 2 )
 translation = Vector3( 0, 0, 0 )

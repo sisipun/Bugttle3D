@@ -11,6 +11,7 @@ name = "Warrior"
 health = 3
 move_range = 5
 attack_range = 1
+attack_count = 1
 attack_power = 2
 mesh = ExtResource( 2 )
 translation = Vector3( 0, 0, 0 )

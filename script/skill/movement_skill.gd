@@ -26,5 +26,8 @@ func execute(bug: Bug, target: Tile, field: Field) -> bool:
 		field, 
 		bug.move_range
 	)
-	field.move_bug(bug, path_info)
+	
+	field.get_tile(path_info.path[0]).remove_bug()
+	field.get_tile(path_info.path[-1]).set_bug(bug)
+	bug.move_range -= path_info.cost
 	return true

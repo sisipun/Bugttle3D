@@ -7,7 +7,11 @@ func get_area(bug: Bug, field: Field) -> Array:
 	for tile in field.tiles:
 		var direction = bug.position - tile.position
 		var distance = abs(direction.x) + abs(direction.y)
-		if distance <= bug.attack_range and bug.position != tile.position:
+		if (
+			bug.attack_count != 0 
+			and distance <= bug.attack_range 
+			and bug.position != tile.position
+		):
 			area.append(tile)
 	return area
 
@@ -26,4 +30,5 @@ func execute(bug: Bug, target: Tile, field: Field) -> bool:
 		return false
 	
 	bug.attack(target.bug)
+	bug.attack_count -= 1
 	return true

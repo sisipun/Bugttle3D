@@ -16,6 +16,7 @@ var max_move_range: int = 0
 var move_range: int = 0
 var max_attack_range: int = 0
 var attack_range: int = 0
+var attack_count: int = 0
 var attack_power: int = 0
 var skills: Array = []
 var dead: bool = false
@@ -33,6 +34,7 @@ func init(_x: int, _y: int, bug_team: int, _type: BugType) -> Bug:
 	self.health = type.health
 	self.move_range = type.move_range
 	self.attack_range = type.attack_range
+	self.attack_count = type.attack_count
 	self.attack_power = type.attack_power
 	self.skills = type.skills
 	self.dead = false
@@ -66,14 +68,9 @@ func set_position_distruct(_x: int, _y: int) -> void:
 	y = _y
 
 
-func move(path_info: PathInfo) -> void:
-	move_range -= path_info.cost
-
-
 func attack(bug: Bug) -> void:
 	if !dead:
 		bug.hit(attack_power)
-		attack_range = 0
 
 
 func hit(power: int) -> void:
