@@ -3,6 +3,8 @@ extends Node
 
 
 # warning-ignore:unused_signal
+signal level_started
+# warning-ignore:unused_signal
 signal level_finished(winner)
 
 
@@ -21,6 +23,7 @@ func init() -> void:
 	_init_bugs()
 	_start_turn(_first_team)
 	_level_started = true
+	emit_signal("level_started")
 
 
 func clear() -> void:

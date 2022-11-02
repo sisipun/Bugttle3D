@@ -48,6 +48,7 @@ func init(_x: int, _y: int, bug_team: int, _type: BugType) -> Bug:
 func before_turn() -> void:
 	self.move_range = self.type.move_range
 	self.attack_range = self.type.attack_range
+	self.attack_count = self.type.attack_count
 
 
 func after_turn() -> void:

@@ -65,9 +65,24 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 script = ExtResource( 3 )
+_current_level = NodePath("../Level")
+_game_over_title = NodePath("GameOverTitle")
 _skill_icon = NodePath("SkillIcon")
 _bug_info = NodePath("BugInfo")
 _tile_info = NodePath("TileInfo")
+
+[node name="GameOverTitle" type="Label" parent="Ui"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -100.0
+margin_top = -50.0
+margin_right = 100.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 200, 50 )
+align = 1
+valign = 1
 
 [node name="SkillIcon" type="TextureRect" parent="Ui"]
 margin_left = 50.0
